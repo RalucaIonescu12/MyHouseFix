@@ -1,9 +1,9 @@
 import React from 'react';
-
+import LoginWidget from './LoginWidget';
 const Home = () => {
   return (
     <div>
-      <h1>Welcome to the Home Page</h1>
+       <LoginWidget />
     </div>
   );
 };
