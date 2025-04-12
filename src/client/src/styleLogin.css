@@ -1,0 +1,460 @@
+.archint-desktop {
+    background-color: #b4b4bb;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .archint-desktop .overlap-group-wrapper {
+    background-color: #b4b4bb;
+    height: 969px;
+    overflow: hidden;
+    width: 1920px;
+  }
+  
+  .archint-desktop .overlap-group {
+    height: 1196px;
+    position: relative;
+    top: -92px;
+  }
+  
+  .archint-desktop .image {
+    background-color: #191a23;
+    height: 969px;
+    left: 0;
+    position: absolute;
+    top: 92px;
+    width: 1920px;
+  }
+  
+  .archint-desktop .rectangle {
+    background-color: #d4d4d4;
+    height: 969px;
+    left: 1126px;
+    position: absolute;
+    top: 92px;
+    width: 794px;
+  }
+  
+  .archint-desktop .frame {
+    align-items: center;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    left: 1280px;
+    padding: 32px 32px 48px;
+    position: absolute;
+    top: 344px;
+    width: 480px;
+  }
+  
+  .archint-desktop .text-wrapper {
+    align-self: stretch;
+    color: #2f4156;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 32px;
+    margin-top: -1.00px;
+    position: relative;
+  }
+  
+  .archint-desktop .login-form {
+    align-items: flex-start;
+    align-self: stretch;
+    border-radius: 16px;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .archint-desktop .div {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .archint-desktop .text-wrapper-2 {
+    align-self: stretch;
+    color: #2f4156;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 16px;
+    margin-top: -1.00px;
+    position: relative;
+  }
+  
+  .archint-desktop .frame-2 {
+    align-items: center;
+    align-self: stretch;
+    border: 1px solid;
+    border-color: #2f4156;
+    border-radius: 8px;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 8px;
+    padding: 16px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .archint-desktop .text-wrapper-3 {
+    color: #2f4156;
+    flex: 1;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 24px;
+    margin-top: -1.00px;
+    position: relative;
+  }
+  
+  .archint-desktop .frame-3 {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    gap: 4px;
+    height: 12px;
+    position: relative;
+  }
+  
+  .archint-desktop .ellipse {
+    background-color: #2f4156;
+    border-radius: 4px;
+    height: 8px;
+    position: relative;
+    width: 8px;
+  }
+  
+  .archint-desktop .eye-off {
+    height: 24px;
+    position: relative;
+    width: 24px;
+  }
+  
+  .archint-desktop .extra {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+  }
+  
+  .archint-desktop .remember {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 8px;
+    position: relative;
+  }
+  
+  .archint-desktop .check-box-default {
+    height: 16px;
+    position: relative;
+    width: 16px;
+  }
+  
+  .archint-desktop .text-wrapper-4 {
+    color: #2f4156;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 16px;
+    margin-top: -1.00px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+  }
+  
+  .archint-desktop .text-wrapper-5 {
+    color: #2f4156;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 16px;
+    margin-top: -1.00px;
+    position: relative;
+    text-align: right;
+    text-decoration: underline;
+    white-space: nowrap;
+    width: fit-content;
+  }
+  
+  .archint-desktop .frame-4 {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 24px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .archint-desktop .button-login {
+    all: unset;
+    align-items: center;
+    background-color: #2f4156;
+    border-radius: 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    justify-content: center;
+    padding: 16px;
+    position: relative;
+  }
+  
+  .archint-desktop .text-wrapper-6 {
+    color: #ffffff;
+    flex: 1;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 16px;
+    margin-top: -1.00px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .archint-desktop .div-wrapper {
+    all: unset;
+    align-items: center;
+    border: 1px solid;
+    border-color: #2f4156;
+    border-radius: 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    justify-content: center;
+    padding: 16px;
+    position: relative;
+  }
+  
+  .archint-desktop .text-wrapper-7 {
+    color: #2f4156;
+    flex: 1;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 16px;
+    margin-top: -1.00px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .archint-desktop .frame-5 {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .archint-desktop .text-wrapper-8 {
+    align-self: stretch;
+    color: #2f4156;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 14px;
+    margin-top: -1.00px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .archint-desktop .frame-6 {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 16px;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+  }
+  
+  .archint-desktop .frame-7 {
+    align-items: flex-start;
+    border: 1px solid;
+    border-color: #2f4156;
+    border-radius: 4px;
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    gap: 8px;
+    justify-content: center;
+    padding: 12px 16px;
+    position: relative;
+  }
+  
+  .archint-desktop .text-wrapper-9 {
+    color: #2f4156;
+    font-family: "Inter-Medium", Helvetica;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 14px;
+    margin-top: -1.00px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    width: fit-content;
+  }
+  
+  .archint-desktop .frame-8 {
+    align-items: center;
+    display: inline-flex;
+    gap: 16px;
+    left: 1313px;
+    position: absolute;
+    top: 164px;
+  }
+  
+  .archint-desktop .img {
+    height: 80px;
+    object-fit: cover;
+    position: relative;
+    width: 82px;
+  }
+  
+  .archint-desktop .text-wrapper-10 {
+    color: #2f4156;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 32px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+  }
+  
+  .archint-desktop .p {
+    color: #2f4156;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 20px;
+    font-weight: 400;
+    left: 1311px;
+    letter-spacing: 0;
+    line-height: 30px;
+    position: absolute;
+    top: 271px;
+    width: 347px;
+  }
+  
+  .archint-desktop .frame-9 {
+    height: 1196px;
+    left: 48px;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    width: 1028px;
+  }
+  
+  .archint-desktop .rectangle-2 {
+    height: 272px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 92px;
+    width: 324px;
+  }
+  
+  .archint-desktop .rectangle-3 {
+    height: 365px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 392px;
+    width: 324px;
+  }
+  
+  .archint-desktop .rectangle-4 {
+    height: 277px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 784px;
+    width: 324px;
+  }
+  
+  .archint-desktop .rectangle-5 {
+    height: 345px;
+    left: 352px;
+    object-fit: cover;
+    position: absolute;
+    top: 92px;
+    width: 324px;
+  }
+  
+  .archint-desktop .rectangle-6 {
+    height: 216px;
+    left: 704px;
+    object-fit: cover;
+    position: absolute;
+    top: 116px;
+    width: 324px;
+  }
+  
+  .archint-desktop .rectangle-7 {
+    height: 318px;
+    left: 704px;
+    object-fit: cover;
+    position: absolute;
+    top: 359px;
+    width: 324px;
+  }
+  
+  .archint-desktop .rectangle-8 {
+    height: 357px;
+    left: 704px;
+    object-fit: cover;
+    position: absolute;
+    top: 704px;
+    width: 324px;
+  }
+  
+  .archint-desktop .rectangle-9 {
+    height: 318px;
+    left: 352px;
+    object-fit: cover;
+    position: absolute;
+    top: 465px;
+    width: 324px;
+  }
+  
+  .archint-desktop .rectangle-10 {
+    height: 250px;
+    left: 352px;
+    object-fit: cover;
+    position: absolute;
+    top: 811px;
+    width: 324px;
+  }
+  
