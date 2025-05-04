@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 src/main/resources/firebase-config.json
+src/main/java/com/example/MyHouseFix/config/JwtUtil.java

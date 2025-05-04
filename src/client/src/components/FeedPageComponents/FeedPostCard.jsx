@@ -2,7 +2,7 @@ import React from "react";
 import { Star, MapPin, BadgeCheck, Phone } from "lucide-react";
 import "../../FeedPage/FeedPageStyle.css";
 import electricityfix from "../../images/electricityfix.jpeg";
-import profilepicture from "../../images/profilepicture.jpeg";
+import profilepicture from "../../images/profile.jpeg";
 
 const FeedPostCard = ({
     profilepicture = profilepicture,

@@ -40,7 +40,7 @@ const LoginWidget = () => {
       localStorage.setItem("token", idToken);
 
       // ➡️ 5. Navighează spre aplicație
-      navigate("/dashboard");
+      navigate("/feed");
     } catch (err) {
       console.error(err);
       setError("Email or password invalid.");
