@@ -1,48 +1,67 @@
 import React from "react";
 import { Star, MapPin, BadgeCheck, Phone } from "lucide-react";
 import "../../FeedPage/FeedPageStyle.css";
+import electricityfix from "../../images/electricityfix.jpeg";
+import profilepicture from "../../images/profilepicture.jpeg";
 
-const PostCard = ({
-  name = "Ion Popescu",
-  skill = "Electrician",
-  rating = 4.8,
-  reviews = 12,
-  location = "București, Sector 4",
-  description = "Repar instalații electrice pentru apartamente și case.",
-  availability = "Luni - Vineri, 9:00 - 17:00",
-  price = "De la 200 RON",
+const FeedPostCard = ({
+    profilepicture = profilepicture,
+   imageSrc,
+    title,
+    updated,
+    name,
+    skill,
+    description,
+    rating,
+    reviews,
+    location,
+    availability,
+    price,
 }) => {
   return (
-    <div className="post-card">
-      <div className="rectangle" />
+      <div className="feed-card">
+           <div className="feed-card-header">
+             <img
+               src={profilepicture}
+               alt={`${name} avatar`}
+               className="feed-avatar"
+             />
+             <div className="feed-user-info">
+               <strong className="feed-username">{name}</strong>
+               <span className="feed-timestamp">{updated}</span>
+             </div>
+           </div>
 
-      <div className="post-info">
-        <strong>{name}</strong>
+           <div className="feed-image-container">
+             <img src={imageSrc} alt={title} className="feed-main-image" />
+           </div>
 
-        <div className="skill-badge">{skill}</div>
+           {/* Content */}
+           <div className="feed-content">
+             <h3 className="feed-title">{title}</h3>
+             <p className="feed-description">{description}</p>
 
-        <p className="post-rating">
-          <Star size={14} color="#FFD700" fill="#FFD700" /> {rating} ({reviews} recenzii)
-        </p>
+             <div className="feed-meta">
+               <div className="feed-rating">
+                 <Star size={16} color="#FFD700" fill="#FFD700" /> {rating} • {reviews} recenzii
+               </div>
+               <div className="feed-location">
+                 <MapPin size={16} /> {location}
+               </div>
+             </div>
 
-        <p className="post-location">
-          <MapPin size={12} /> {location}
-        </p>
+             <div className="feed-details">
+               <span className="feed-skill">{skill}</span>
+               <span className="feed-availability">{availability}</span>
+               <span className="feed-price">{price}</span>
+             </div>
 
-        <p className="post-description">{description}</p>
-
-        <p className="post-availability">
-          <strong>Disponibil:</strong> {availability}
-        </p>
-
-        <p className="post-price">{price}</p>
-
-        <button className="post-contact-button">
-          <Phone size={14} /> Solicită
-        </button>
-      </div>
-    </div>
+             <button className="feed-contact-button">
+               <Phone size={16} /> Programeaza
+             </button>
+           </div>
+         </div>
   );
 };
 
-export default PostCard;
+export default FeedPostCard;
