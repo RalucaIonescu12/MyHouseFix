@@ -1,14 +1,50 @@
 import React, { useState } from "react";
 import icon from "../images/pngegg.png";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase-config";
 
 const LoginWidget = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted with:", { email, password, rememberMe });
+    setError("");
+
+    try {
+      // 🔐 1. Login în Firebase
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // 🔑 2. Obține tokenul Firebase (ID Token JWT)
+      const idToken = await user.getIdToken();
+
+      // 🔁 3. Trimite tokenul la backendul tău Spring Boot
+      const response = await axios.post(
+          "/auth/login",
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${idToken}`,
+            },
+          }
+      );
+
+      // ✅ 4. Salvează tokenul în localStorage dacă e nevoie
+      localStorage.setItem("token", idToken);
+
+      // ➡️ 5. Navighează spre aplicație
+      navigate("/dashboard");
+    } catch (err) {
+      console.error(err);
+      setError("Email or password invalid.");
+    }
   };
 
   return (
@@ -56,16 +92,21 @@ const LoginWidget = () => {
             </div>
             <span style={styles.forgotPassword}>Forgot password?</span>
           </div>
-
+          {error && <div style={{ color: "red", marginTop: "10px" }}>{error}</div>}
           <div style={styles.buttonContainer}>
             <button type="submit" style={styles.button}>
               Login
             </button>
-            <button type="button" style={styles.buttonSignUp}>
+            <button
+                type="button"
+                style={styles.buttonSignUp}
+                onClick={() => navigate("/register")}
+            >
               Sign Up
             </button>
           </div>
         </form>
+
 
         <div style={styles.socialLoginContainer}>
           <div style={styles.socialLogin}>Or, login with</div>
@@ -222,6 +263,16 @@ const styles = {
   description: {
     fontSize: "14px",
     color: "#2f4156",
+  },
+  errorMessage: {
+    marginTop: "12px",
+    padding: "10px",
+    backgroundColor: "#ffe0e0",
+    color: "#b00020",
+    border: "1px solid #b00020",
+    borderRadius: "8px",
+    fontWeight: "500",
+    textAlign: "center",
   },
 };
 

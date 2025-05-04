@@ -1,6 +1,6 @@
 import React from 'react';
 import './HomePage.css'
-import LoginWidget from '../Login/LoginWidget';
+import LoginWidget from '../components/LoginWidget';
 
 const HomePage = () => {
   return <div>
