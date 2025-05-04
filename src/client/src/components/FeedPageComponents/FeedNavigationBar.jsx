@@ -25,9 +25,11 @@ const UiZingAdminsNav = ({ property1 = "variant-3" }) => {
   return (
     <nav className={`UI-zing-admins-nav ${isOpen ? "open" : "collapsed"}`}>
       <div className="nav-header">
+
         <button className="icon-line-chevron" onClick={() => dispatch("click")}>
           {isOpen ? <ChevronLeft size={24} color="#fff" /> : <ChevronRight size={24} color="#fff" />}
         </button>
+        {isOpen && <span className="app-title">MyHouseFix</span>}
       </div>
 
       <div className="nav-body">
@@ -46,23 +48,9 @@ const UiZingAdminsNav = ({ property1 = "variant-3" }) => {
           <CurrentIssues showLabel={isOpen} />
           <CustomerSupport showLabel={isOpen} />
         </div>
-
-        <div className="nav-section">
-          {isOpen && <span className="nav-label">UTILITIES</span>}
-          <PermissionsButton showLabel={isOpen} />
-        </div>
       </div>
 
       <div className="frame-7">
-        <div className="frame-8">
-          <div className="icon-line-user">
-            <div className="group-8">
-              <User size={20} color="#2c3e50" />
-            </div>
-          </div>
-          {isOpen && <div className="label-4">Ion Popescu</div>}
-        </div>
-
         <div className="frame-9">
           {isOpen && <div className="text-wrapper-6">Sign out</div>}
         </div>

@@ -1,12 +1,12 @@
 import React from "react";
 import "../../FeedPage/FeedPageStyle.css";
 import { FeedPicture } from './FeedPicture';
-export const ProfileBox = () => {
+export const ProfileBox = ({ user }) => {
   return (
     <div className="profilebox">
-      <div className="rectangle" >
-          <FeedPicture />
-         </div>
+      <div className="rectangle">
+        <FeedPicture user={user} />
+      </div>
     </div>
   );
 };
