@@ -57,7 +57,7 @@ const FeedPostCard = ({
              </div>
 
              <button className="feed-contact-button">
-               <Phone size={16} /> Programeaza
+               <Phone size={16} /> Programeaza...
              </button>
            </div>
          </div>
