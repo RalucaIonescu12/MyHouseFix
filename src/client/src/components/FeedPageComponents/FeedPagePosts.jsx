@@ -24,7 +24,7 @@ export function SearchInput({ value, onChange, placeholder = "Caută postări...
   );
 }
 
-export const Posts = () => {
+export const Posts = ({ onPostClick }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 2;
@@ -218,6 +218,7 @@ export const Posts = () => {
          {currentPosts.map((p, i) => (
            <FeedPostCard
              key={i}
+             onClick={() => onPostClick(p.title)}
              imageSrc={p.imageSrc}
              title={p.title}
              updated={p.updated}

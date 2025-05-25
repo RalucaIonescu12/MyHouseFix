@@ -17,9 +17,10 @@ const FeedPostCard = ({
     location,
     availability,
     price,
+    onClick,
 }) => {
   return (
-      <div className="feed-card">
+      <div className="feed-card" onClick={onClick}>
            <div className="feed-card-header">
              <img
                src={profilepicture}
