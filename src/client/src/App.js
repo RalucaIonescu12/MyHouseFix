@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './HomePage/HomePage';
 import RegisterPage from "./RegisterPage/RegisterPage";
 import { FeedPage } from './FeedPage/FeedPage';
+import  ProfilePage from './Profile/ProfilePage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path="/" element={<HomePage/>} />
         <Route path="/feed" element={<FeedPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </Router>
   );
