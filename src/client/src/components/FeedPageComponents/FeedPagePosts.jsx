@@ -24,7 +24,7 @@ export function SearchInput({ value, onChange, placeholder = "Caută postări...
   );
 }
 
-export const Posts = ({ onPostClick }) => {
+export const Posts = ({ onPostClick, onBookClick  }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 2;
@@ -231,6 +231,7 @@ export const Posts = ({ onPostClick }) => {
              availability={p.availability}
              price={p.price}
              profilepicture={p.profileimg}
+             onBookClick={() => onBookClick(p)}
            />
          ))}
        </div>

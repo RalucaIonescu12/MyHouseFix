@@ -7,6 +7,8 @@ import ReviewBox from '../components/FeedPageComponents/ReviewBox';
 import './FeedPageStyle.css';
 import profileImage from "../images/profile.jpeg";
 import reviewsData from "../components/FeedPageComponents/FeedReviewsData";
+import BookingForm from "../components/FeedPageComponents/BookingForm";
+
 
 const currentUser = {
   name: "Alex Ionescu",
@@ -20,10 +22,18 @@ const currentUser = {
 
 
 export const FeedPage = () => {
+    const [showProfile, setShowProfile] = useState(true);
     const [selectedPost, setSelectedPost] = useState(null);
 
     const handlePostClick = (title) => {
+        setShowProfile(false);
         setSelectedPost(title);
+    };
+
+    const handleBookClick = (post) => {
+        setShowProfile(false);
+        console.log("Clicked booking for:", post.title);
+        setSelectedPost({ booking: post });
     };
 
   return (
@@ -34,18 +44,23 @@ export const FeedPage = () => {
 
       <div className="main-content">
         <div className="center-content">
-            <Posts onPostClick={handlePostClick} />
+            <Posts onPostClick={handlePostClick} onBookClick={handleBookClick} />
         </div>
       </div>
 
         <div className="right-panel">
-            {selectedPost ? (
-                <ReviewBox
-                    reviews={reviewsData[selectedPost] || []}
-                    onBack={() => setSelectedPost(null)}
+            {showProfile ? (
+                <ProfileBox user={currentUser} />
+            ) : selectedPost?.booking ? (
+                <BookingForm
+                    post={selectedPost.booking}
+                    onBack={() => setShowProfile(true)}
                 />
             ) : (
-                <ProfileBox user={currentUser}/>
+                <ReviewBox
+                    reviews={reviewsData[selectedPost] || []}
+                    onBack={() => setShowProfile(true)}
+                />
             )}
         </div>
     </div>
@@ -53,3 +68,7 @@ export const FeedPage = () => {
 };
 
 export default FeedPage;
+
+// issues: totul trebuie facut mai mare
+// sa nu se schimbe dimensiunea lui right panel
+// daca apas pe o zi indisponibila sa nu se schimbe culoarea in gri dar sa dispara meniul dropdown si sa scrie undeva indisponibil

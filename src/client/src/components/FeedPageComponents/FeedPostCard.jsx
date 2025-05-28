@@ -18,6 +18,7 @@ const FeedPostCard = ({
     availability,
     price,
     onClick,
+    onBookClick,
 }) => {
   return (
       <div className="feed-card" onClick={onClick}>
@@ -57,11 +58,17 @@ const FeedPostCard = ({
                <span className="feed-price">{price}</span>
              </div>
 
-             <button className="feed-contact-button">
-               <Phone size={16} /> Programeaza...
-             </button>
+               <button
+                   className="feed-contact-button"
+                   onClick={(e) => {
+                       e.stopPropagation();
+                       onBookClick && onBookClick();
+                   }}
+               >
+                   <Phone size={16}/> Programeaza...
+               </button>
            </div>
-         </div>
+      </div>
   );
 };
 
