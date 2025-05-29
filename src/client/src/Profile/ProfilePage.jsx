@@ -1,10 +1,10 @@
 import React, { useState, useRef  } from "react"; 
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
-
+import { Link } from 'react-router-dom';
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
-import profilepicture from "../images/profile.jpeg";
+import profilepicture from "../images/mechanicwoman.jpeg";
 import TimePicker from 'react-time-picker';
 import UiZingAdminsNav from '../components/FeedPageComponents/FeedNavigationBar';
 import "./ProfilePage.css";
@@ -118,57 +118,60 @@ const ProfilePage = () => {
       </div>
 
       <div className="profile-main">
-        <div className="profile-card">
-
-        <div 
-            className={`profile-picture-container ${editMode ? "editable" : ""}`} 
-            onClick={handlePictureClick}
-            title={editMode ? "Click to change profile picture" : ""}
-          >
-            <img
-              src={profilePicUrl}
-              alt="Profile"
-              className="profile-picture"
-            />
-            {editMode && (
-              <div className="overlay">
-                <span className="edit-text">Edit</span>
-              </div>
-            )}
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              onChange={handleProfilePicChange}
-              style={{ display: "none" }}
-            />
-          </div>
-
-          <div className="profile-header">
-            <h1>Master's Profile</h1>
-            <button
-              className="edit-button"
-              onClick={() => setEditMode(!editMode)}
+      <div className="profile-card">
+          <div className="profile-top-section">
+            <div 
+              className={`profile-picture-container ${editMode ? "editable" : ""}`} 
+              onClick={handlePictureClick}
+              title={editMode ? "Click to change profile picture" : ""}
             >
-              {editMode ? "Save" : "Edit..."}
-            </button>
-          </div>
+              <img
+                src={profilePicUrl}
+                alt="Profile"
+                className="profile-picture"
+              />
+              {editMode && (
+                <div className="overlay">
+                  <span className="edit-text">Edit</span>
+                </div>
+              )}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleProfilePicChange}
+                style={{ display: "none" }}
+              />
+            </div>
 
-          <div className="profile-info">
-            {["firstName", "lastName", "username", "email"].map((field) => (
-              <div key={field} className="info-field">
-                <label>{field.replace(/([A-Z])/g, " $1")}</label>
-                {editMode ? (
-                  <input
-                    type="text"
-                    value={profile[field]}
-                    onChange={(e) => handleInputChange(field, e.target.value)}
-                  />
-                ) : (
-                  <p>{profile[field]}</p>
-                )}
+            <div className="profile-details">
+              <div className="profile-header">
+                <h1>Master's Profile</h1>
+                <button
+                  className="edit-button"
+                  onClick={() => setEditMode(!editMode)}
+                >
+                  {editMode ? "Save" : "Edit..."}
+                </button>
               </div>
-            ))}
+
+              <div className="profile-info">
+                {["firstName", "lastName", "username", "email"].map((field) => (
+                  <div key={field} className="info-field">
+                    <label>{field.replace(/([A-Z])/g, " $1")}</label>
+                    {editMode ? (
+                      <input
+                        type="text"
+                        value={profile[field]}
+                        onChange={(e) => handleInputChange(field, e.target.value)}
+                      />
+                    ) : (
+                      <p>{profile[field]}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="availability-section">
