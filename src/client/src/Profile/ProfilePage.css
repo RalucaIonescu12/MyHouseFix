@@ -24,13 +24,42 @@
     padding: 2rem;
   }
   
-  .profile-card {
+  /* .profile-card {
     background: white;
     padding: 2rem;
     max-width: 900px;
     margin: 0 auto;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  } */
+  .profile-card {
+    background: white;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    max-height: 85vh; 
+  }
+  
+
+  .profile-top-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+ 
+  .profile-details {
+    flex: 1;
+  }
+  
+ 
+  .profile-picture-container {
+    width: 170px;
+    height: 170px;
+    flex-shrink: 0;
   }
   
   .profile-header {
@@ -64,13 +93,13 @@
     margin-top: 1.5rem;
   }
   
-  .info-field label {
+  /* .info-field label {
     display: block;
     font-weight: bold;
     color: #555;
     margin-bottom: 0.25rem;
     text-transform: capitalize;
-  }
+  } */
   
   .info-field input {
     width: 100%;
@@ -91,26 +120,40 @@
   
   .calendar-container {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    flex-direction: row;
     width: 100%;
+    height: 100%;
+    margin-top: 30px;
   }
   
-
-  
+  .calendar-container > .react-calendar {
+    flex: 0 0 70%;
+  }
   
   .time-inputs {
+    flex: 0 0 30%; 
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    justify-content: center; 
+    gap: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  
+  
+
+  .time-inputs label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    font-weight: 500;
     width: 100%;
   }
-  
-  
-  .time-inputs label {
+  /* .time-inputs label {
     font-weight: 500;
-  }
+  } */
   
   .time-inputs input {
     padding: 0.4rem;
@@ -134,6 +177,7 @@
   .availability-list ul {
     list-style: none;
     padding: 0;
+
   }
   
   .availability-item {
@@ -151,8 +195,9 @@
     color: #777;
   }
   .availability-list {
-    max-height: 450px;  
+    max-height: 400px;  
     overflow-y: auto;
+    margin-top: 30px;
     padding-right: 0.5rem; 
   }
   
@@ -177,7 +222,7 @@
   
   .react-calendar__tile {
     max-width: initial !important;
-    line-height: 3rem;
+    line-height: 2rem;
     border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
@@ -348,4 +393,39 @@
   .edit-text {
     user-select: none;
   }
-  
+  /* .profile-info .info-field {
+  display: flex;
+  flex-direction: column;
+  height: 2.6rem; 
+  justify-content: center; 
+} */
+
+.info-field label {
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+  color: #555;
+  text-transform: capitalize;
+}
+
+.profile-info .info-field p,
+.profile-info .info-field input {
+  margin: 0;
+  line-height: 1.4;
+  font-size: 16px;
+  padding: 0.4rem 0.5rem;
+  box-sizing: border-box;
+  height: 2.2rem; /* same fixed height */
+  border-radius: 6px;
+  font-family: inherit;
+  color: #333;
+  width: 100%;
+}
+
+.profile-info .info-field input {
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.profile-info .info-field p {
+  background-color: transparent;
+}
