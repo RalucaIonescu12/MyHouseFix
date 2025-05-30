@@ -8,6 +8,7 @@ import lightCheckImg from "../../images/lightcheck.jpeg";
 import tailorFitImg from "../../images/female_tailor.jpeg";
 import plumbingImg from "../../images/pipefix.jpeg";
 import profilepicture from "../../images/profile.jpeg";
+import AddForm from "./AddForm";
 
 export function SearchInput({ value, onChange, placeholder = "Caută postări..." }) {
   return (
@@ -24,12 +25,22 @@ export function SearchInput({ value, onChange, placeholder = "Caută postări...
   );
 }
 
+
 export const Posts = ({ onPostClick }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [addPostForm, setAddPostForm] = useState(false);
   const postsPerPage = 2;
 
-  const posts = [
+  const addPostToggle = () => {
+    setAddPostForm(true)
+  }
+
+  const cancelAdd = () => {
+    setAddPostForm(false);
+  };
+
+  const [posts, setPosts] = useState([
     {
       profileimg: profilepicture,
       title: "Pipe Fix",
@@ -184,7 +195,7 @@ export const Posts = ({ onPostClick }) => {
       availability: "Luni - Duminică, 7:00 - 19:00",
       price: "De la 180 RON",
     },
-  ];
+  ]);
 
   const filteredPosts = posts.filter(p =>
     p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -196,9 +207,42 @@ export const Posts = ({ onPostClick }) => {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const [selectedFile, setSelectedFile] = useState(null);
+
+
+
+  const addPost = () => {
+    const newPost = {
+      title: document.getElementById("name").value,
+      user: "Alex Ionescu",
+      skill: "Plumber",
+      imageSrc: selectedFile,
+      description: document.getElementById("description").value,
+      price: document.getElementById("price").value + " RON",
+      profileimg: profilepicture,
+      rating: 0,
+      reviews: 0,
+      location: "București, Berceni",
+      availability: "Luni - Duminică, 7:00 - 19:00",
+    };
+
+    setPosts(prevPosts => [newPost, ...prevPosts]);
+    cancelAdd()
+};
 
   return (
     <div className="posts">
+      {addPostForm && (
+        <>
+          <div 
+            className="grey-screen"
+            onClick={cancelAdd}
+          ></div>
+          <AddForm cancelAdd={cancelAdd} setSelectedFile={setSelectedFile} addPost={addPost}/>
+        </>
+
+      )
+      }
       <div className="feed-header">
         <h2>Postări noi</h2>
         <div className="filter-bar">
@@ -210,6 +254,9 @@ export const Posts = ({ onPostClick }) => {
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="Caută postări..."
           />
+          <div style={{cursor: "pointer", marginLeft: "25%"}} className="add-post" onClick={addPostToggle}>
+            <img src="/add-post.svg" alt="" height="30px" width="30px"/>
+          </div>
         </div>
       </div>
 
