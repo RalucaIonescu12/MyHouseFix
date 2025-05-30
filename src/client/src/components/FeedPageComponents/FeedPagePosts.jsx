@@ -8,7 +8,7 @@ import lightCheckImg from "../../images/lightcheck.jpeg";
 import tailorFitImg from "../../images/female_tailor.jpeg";
 import plumbingImg from "../../images/pipefix.jpeg";
 import profilepicture from "../../images/profile.jpeg";
-import AddForm from "./AddForm";
+import AddForm from "./AddForm.jsx";
 
 export function SearchInput({ value, onChange, placeholder = "Caută postări..." }) {
   return (
