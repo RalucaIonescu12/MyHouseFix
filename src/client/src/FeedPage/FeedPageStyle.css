@@ -473,6 +473,9 @@
   position: relative;
   max-width: 600px;
   margin: 16px auto;
+  display: flex;
+  gap: 50%;
+  margin-right: 0px;
 }
 
 .search-input {
@@ -590,8 +593,7 @@
   color: #fff;
 }
 .filter-bar .search-input-container {
-  margin-left: 20px;
-  max-width: 240px;
+  margin-left: 16px;
 }
 
 
@@ -737,4 +739,78 @@
 .pagination button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.add-post:hover{
+  content: url("../../public/add-post-hover.svg");
+  height: 30px;
+  width: 30px;
+}
+
+.add-form-elements{
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.add-form-elements input{
+  width: 80%;
+  height: 25px;
+}
+
+.add-form-elements label{
+  width: 15%;
+  font-weight: 600;
+}
+
+.add-post-form{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.close-form{
+  display: flex; 
+  justify-content: end;
+}
+
+.add-post-button{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 2rem;
+
+}
+
+#addButton{
+  font-weight: 600;
+}
+
+#addButton:hover{
+  background-color:white !important;
+  color:#2c3e50 !important;
+}
+
+.grey-screen{
+   position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.add-form-display{
+   position: fixed;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    width: 40%;
+    height: 60%;
+    border-radius: 10px;
 }
