@@ -10,7 +10,7 @@ import plumbingImg from "../../images/pipefix.jpeg";
 import profilepicture from "../../images/profile.jpeg";
 import AddForm from "./AddForm.jsx";
 
-export function SearchInput({ value, onChange, placeholder = "Caută postări..." }) {
+export function SearchInput({ value, onChange, placeholder = "Search..." }) {
   return (
     <div className="search-input-container">
       <Search className="search-input-icon" />
@@ -54,6 +54,7 @@ export const Posts = ({ onPostClick }) => {
       location: "București, Militari",
       availability: "Luni - Sâmbătă, 8:00 - 18:00",
       price: "De la 150 RON",
+       accredited: true
     },
     {
       profileimg: profilepicture,
@@ -82,6 +83,7 @@ export const Posts = ({ onPostClick }) => {
       location: "București, Unirii",
       availability: "Luni - Vineri, 10:00 - 16:00",
       price: "De la 70 RON",
+       accredited: true
     },
     {
       profileimg: profilepicture,
@@ -278,6 +280,7 @@ export const Posts = ({ onPostClick }) => {
              availability={p.availability}
              price={p.price}
              profilepicture={p.profileimg}
+             accredited={p.accredited}
            />
          ))}
        </div>

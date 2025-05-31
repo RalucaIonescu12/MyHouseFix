@@ -4,7 +4,7 @@ import "../../../FeedPage/FeedPageStyle.css";
 const CarService = ({showLabel = true }) => (
   <button className="nav-button">
     <Car className="icon" />
-     {showLabel && "Car service"}
+     {showLabel && "Car services"}
   </button>
 );
 

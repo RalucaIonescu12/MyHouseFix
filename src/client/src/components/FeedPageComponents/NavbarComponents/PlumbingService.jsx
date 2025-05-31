@@ -4,7 +4,7 @@ import "../../../FeedPage/FeedPageStyle.css";
 const PlumbingService = ({ showLabel = true  }) => (
   <button className="nav-button">
     <Wrench className="icon" />
-     {showLabel && "Plumbing service"}
+     {showLabel && "Plumbing services"}
   </button>
 );
 

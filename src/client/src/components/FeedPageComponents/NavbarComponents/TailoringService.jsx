@@ -4,7 +4,7 @@ import "../../../FeedPage/FeedPageStyle.css";
 const TailoringService = ({showLabel = true }) => (
   <button className="nav-button">
     <Scissors className="icon" />
-     {showLabel && "Tailoring service"}
+     {showLabel && "Tailoring services"}
   </button>
 );
 

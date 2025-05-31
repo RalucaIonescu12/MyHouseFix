@@ -4,7 +4,7 @@ import "../../../FeedPage/FeedPageStyle.css";
 const DashboardButton = ({ showLabel = true  }) => (
   <button className="nav-button">
     <Home className="icon" />
-     {showLabel && "Dashboard"}
+     {showLabel && "All posts"}
   </button>
 );
 
