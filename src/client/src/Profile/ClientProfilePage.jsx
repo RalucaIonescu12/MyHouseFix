@@ -11,7 +11,7 @@ const BookingProfilePage = () => {
     username: "ionBanu123",
     email: "ion@example.com",
   });
-
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [bookings] = useState([
     {
       title: "Pipe Fix",
@@ -72,7 +72,7 @@ const BookingProfilePage = () => {
   return (
     <div className="booking-profile-page">
       <div className="sidebar">
-        <UiZingAdminsNav />
+        <UiZingAdminsNav setCategory={setSelectedCategory} />
       </div>
 
       <div className="profile-main">

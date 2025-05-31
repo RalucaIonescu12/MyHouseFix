@@ -25,11 +25,11 @@
   .profile-card {
     background: white;
     padding: 2rem;
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    height: 700px; 
+    height: 630px; 
   }
   
   .profile-top-section {
@@ -68,8 +68,8 @@
   .info-field {
     display: flex;
     flex-direction: column;
-    height: 2.6rem; /* fixed height for consistency */
-    justify-content: center; /* vertical center content */
+    height: 2.6rem;
+    justify-content: center; 
   }
   
   .info-field label {
@@ -81,12 +81,12 @@
   
   .info-field p,
   .info-field input {
-    margin: 0; /* remove vertical margin */
+    margin: 0; 
     line-height: 1.4;
     font-size: 16px;
     padding: 0.4rem 0.5rem;
     box-sizing: border-box;
-    height: 2.2rem; /* match height */
+    height: 2.2rem; 
     border-radius: 6px;
     font-family: inherit;
     color: #333;
@@ -194,7 +194,7 @@
   }
   
   .booking-scroll-wrapper {
-    max-height: 400px;
+    max-height: 300px;
     overflow-y: auto;
     padding-right: 8px; 
     margin-top: 1rem;
