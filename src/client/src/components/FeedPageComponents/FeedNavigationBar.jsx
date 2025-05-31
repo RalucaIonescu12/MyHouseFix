@@ -11,6 +11,7 @@ import PlumbingService from "./NavbarComponents/PlumbingService";
 import ElectricService from "./NavbarComponents/ElectricService";
 import CurrentIssues from "./NavbarComponents/CurrentIssues";
 import CustomerSupport from "./NavbarComponents/CustomerSupport";
+import icon from "../../images/pngegg.png";
 import PermissionsButton from "./NavbarComponents/PermissionsButton";
 import HomeRenovationServices from "./NavbarComponents/HomeRenovationServices";
 import HouseCleaningService from "./NavbarComponents/HouseCleaningService";
@@ -30,7 +31,9 @@ const UiZingAdminsNav = ({ property1 = "variant-3" }) => {
         <button className="icon-line-chevron" onClick={() => dispatch("click")}>
           {isOpen ? <ChevronLeft size={24} color="#fff" /> : <ChevronRight size={24} color="#fff" />}
         </button>
+        {isOpen &&<img alt="Logo" src={icon} style={styles.logo} />}
         {isOpen && <span className="app-title">MyHouseFix</span>}
+        
       </div>
 
       <div className="nav-body">
@@ -73,3 +76,15 @@ UiZingAdminsNav.propTypes = {
 };
 
 export default UiZingAdminsNav;
+
+
+const styles = {
+  
+  logo: {
+    width: "50px",
+    height: "50px",
+    objectFit: "cover",
+    marginTop: "50px",
+    filter: "invert(1) brightness(2)" 
+  }
+};
