@@ -256,7 +256,7 @@ export const Posts = ({ onPostClick }) => {
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="Caută postări..."
           />
-          <div style={{cursor: "pointer", marginLeft: "25%"}} className="add-post" onClick={addPostToggle}>
+          <div style={{cursor: "pointer", marginLeft: "18%"}} className="add-post" onClick={addPostToggle}>
             <img src="/add-post.svg" alt="" height="30px" width="30px"/>
           </div>
         </div>
