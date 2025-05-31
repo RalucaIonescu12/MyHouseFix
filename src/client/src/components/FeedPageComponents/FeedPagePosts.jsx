@@ -293,6 +293,11 @@ const handleSortChange = (event) => {
       setPosts([...posts].sort((a, b) => b.rating - a.rating))
       break;
     }
+
+    case "mine": {
+      setPosts([...posts].filter(a => a.user === "Alex Ionescu"))
+      break;
+    }
   }
 
 
@@ -321,6 +326,7 @@ const handleSortChange = (event) => {
                 <option value="price-high">Price high</option>
                 <option value="rating-low">Rating low</option>
                 <option value="rating-high">Rating high</option>
+                <option value="mine">Mine</option>
             </select>
           </div>
           <SearchInput
