@@ -302,7 +302,7 @@ const handleSortChange = (event) => {
       )
       }
       <div className="feed-header">
-        <h2>Postări noi</h2>
+        <h2>New posts</h2>
         <div className="filter-bar">
           <div className="sort-component">
             <select id="category" className="select-sort" onChange={handleSortChange}>
@@ -311,7 +311,6 @@ const handleSortChange = (event) => {
                 <option value="price-high">Price high</option>
                 <option value="rating-low">Rating low</option>
                 <option value="rating-high">Rating high</option>
-                <option value="distance-near">Distance near</option>
             </select>
           </div>
           <SearchInput
