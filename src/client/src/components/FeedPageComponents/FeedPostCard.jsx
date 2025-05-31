@@ -55,7 +55,7 @@ const FeedPostCard = ({
              <div className="feed-details">
                <span className="feed-skill">{skill}</span>
                <span className="feed-availability">{availability}</span>
-               <span className="feed-price">{price}</span>
+               <span className="feed-price">{price} RON</span>
              </div>
              <button className="feed-contact-button">
                <Phone size={16} /> Schedule...

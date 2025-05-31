@@ -40,7 +40,7 @@ export const Posts = ({ onPostClick }) => {
     setAddPostForm(false);
   };
 
-  const [posts, setPosts] = useState([
+  const defaultPosts = [
     {
       profileimg: profilepicture,
       title: "Pipe Fix",
@@ -53,7 +53,7 @@ export const Posts = ({ onPostClick }) => {
       reviews: 24,
       location: "București, Militari",
       availability: "Luni - Sâmbătă, 8:00 - 18:00",
-      price: "De la 150 RON",
+      price: 150,
        accredited: true
     },
     {
@@ -68,7 +68,7 @@ export const Posts = ({ onPostClick }) => {
       reviews: 35,
       location: "București, Sector 1",
       availability: "Marți - Vineri, 9:00 - 17:00",
-      price: "De la 100 RON",
+      price: 100,
     },
     {
       profileimg: profilepicture,
@@ -82,8 +82,8 @@ export const Posts = ({ onPostClick }) => {
       reviews: 18,
       location: "București, Unirii",
       availability: "Luni - Vineri, 10:00 - 16:00",
-      price: "De la 70 RON",
-       accredited: true
+      price: 70,
+      accredited: true
     },
     {
       profileimg: profilepicture,
@@ -97,7 +97,7 @@ export const Posts = ({ onPostClick }) => {
       reviews: 20,
       location: "București, Berceni",
       availability: "Luni - Duminică, 7:00 - 19:00",
-      price: "De la 180 RON",
+      price: 180,
     },
    {
       profileimg: profilepicture,
@@ -111,7 +111,7 @@ export const Posts = ({ onPostClick }) => {
       reviews: 20,
       location: "București, Berceni",
       availability: "Luni - Duminică, 7:00 - 19:00",
-      price: "De la 180 RON",
+      price: 180,
     },
    {
       profileimg: profilepicture,
@@ -125,7 +125,7 @@ export const Posts = ({ onPostClick }) => {
       reviews: 20,
       location: "București, Berceni",
       availability: "Luni - Duminică, 7:00 - 19:00",
-      price: "De la 180 RON",
+      price: 180,
     },
    {
       profileimg: profilepicture,
@@ -139,7 +139,7 @@ export const Posts = ({ onPostClick }) => {
       reviews: 20,
       location: "București, Berceni",
       availability: "Luni - Duminică, 7:00 - 19:00",
-      price: "De la 180 RON",
+      price: 180,
     },
    {
       profileimg: profilepicture,
@@ -153,7 +153,7 @@ export const Posts = ({ onPostClick }) => {
       reviews: 20,
       location: "București, Berceni",
       availability: "Luni - Duminică, 7:00 - 19:00",
-      price: "De la 180 RON",
+      price: 180,
     },
    {
       profileimg: profilepicture,
@@ -167,7 +167,7 @@ export const Posts = ({ onPostClick }) => {
       reviews: 20,
       location: "București, Berceni",
       availability: "Luni - Duminică, 7:00 - 19:00",
-      price: "De la 180 RON",
+      price: 180,
     },
    {
       profileimg: profilepicture,
@@ -181,7 +181,7 @@ export const Posts = ({ onPostClick }) => {
       reviews: 20,
       location: "București, Berceni",
       availability: "Luni - Duminică, 7:00 - 19:00",
-      price: "De la 180 RON",
+      price: 180,
     },
    {
       profileimg: profilepicture,
@@ -195,9 +195,11 @@ export const Posts = ({ onPostClick }) => {
       reviews: 20,
       location: "București, Berceni",
       availability: "Luni - Duminică, 7:00 - 19:00",
-      price: "De la 180 RON",
+      price: 180,
     },
-  ]);
+  ]
+
+  const [posts, setPosts] = useState(defaultPosts);
 
   const filteredPosts = posts.filter(p =>
     p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -210,8 +212,7 @@ export const Posts = ({ onPostClick }) => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   const [selectedFile, setSelectedFile] = useState(null);
-
-
+  const [sortOption, setSortOption] = useState("newest");
 
   const addPost = () => {
 
@@ -236,7 +237,7 @@ export const Posts = ({ onPostClick }) => {
       skill: "Plumber",
       imageSrc: selectedFile,
       description: description,
-      price: price + " RON",
+      price: priceNumber,
       profileimg: profilepicture,
       rating: 0,
       reviews: 0,
@@ -247,10 +248,44 @@ export const Posts = ({ onPostClick }) => {
 
     console.log("post: ", newPost);
     
-
     setPosts(prevPosts => [newPost, ...prevPosts]);
     setSelectedFile(null)
     cancelAdd()
+};
+
+const handleSortChange = (event) => {
+  var sortOption = event.target.value
+  setSortOption(sortOption);
+  console.log("Selected sort option:", sortOption);
+
+  switch(sortOption){
+    case "newest": {
+      setPosts(defaultPosts)
+      break;
+    }
+
+    case "price-low": {
+      setPosts([...posts].sort((a, b) => a.price - b.price))
+      break;
+    }
+
+    case "price-high": {
+      setPosts([...posts].sort((a, b) => b.price - a.price))
+      break;
+    }
+
+    case "rating-low": {
+      setPosts([...posts].sort((a, b) => a.rating - b.rating))
+      break;
+    }
+
+    case "rating-high": {
+      setPosts([...posts].sort((a, b) => b.rating - a.rating))
+      break;
+    }
+  }
+
+
 };
 
   return (
@@ -269,9 +304,16 @@ export const Posts = ({ onPostClick }) => {
       <div className="feed-header">
         <h2>Postări noi</h2>
         <div className="filter-bar">
-          <button className="filter-btn">Toate</button>
-          <button className="filter-btn">Electroniști</button>
-          <button className="filter-btn">Mecanici</button>
+          <div className="sort-component">
+            <select id="category" className="select-sort" onChange={handleSortChange}>
+                <option value="newest">Newest</option>
+                <option value="price-low">Price low</option>
+                <option value="price-high">Price high</option>
+                <option value="rating-low">Rating low</option>
+                <option value="rating-high">Rating high</option>
+                <option value="distance-near">Distance near</option>
+            </select>
+          </div>
           <SearchInput
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
