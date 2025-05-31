@@ -11,7 +11,7 @@ import reviewsData from "../components/FeedPageComponents/FeedReviewsData";
 const currentUser = {
   name: "Alex Ionescu",
   location: "București, Sector 4",
-  role: "mester",
+  role: localStorage.getItem("role"),
   pendingRequests: 3,
   upcomingAppointments: 2,
   profileImg: profileImage

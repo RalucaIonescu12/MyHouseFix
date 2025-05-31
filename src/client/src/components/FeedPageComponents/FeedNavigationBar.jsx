@@ -23,6 +23,7 @@ const UiZingAdminsNav = ({ property1 = "variant-3", setCategory }) => {
   });
   const navigate = useNavigate();
   const isOpen = state.property1 === "open";
+  const role = localStorage.getItem("role")
 
   return (
     <nav className={`UI-zing-admins-nav ${isOpen ? "open" : "collapsed"}`}>
@@ -50,7 +51,7 @@ const UiZingAdminsNav = ({ property1 = "variant-3", setCategory }) => {
           {isOpen && <span className="nav-label">OPERATIONS</span>}
           <CurrentIssues
         showLabel={isOpen}
-        onClick={() => navigate("/profileClient")} 
+        onClick={() => role === 'master' ? navigate("/profileClient"): navigate("/profile")} 
       />
         </div>
       </div>
