@@ -214,21 +214,42 @@ export const Posts = ({ onPostClick }) => {
 
 
   const addPost = () => {
+
+    const title = document.getElementById("name").value.trim();
+    const description = document.getElementById("description").value.trim();
+    const price = document.getElementById("price").value.trim();
+
+    if (!title || !description || !price || !selectedFile) {
+      alert("All fields must be filled!");
+      return;
+    }
+    
+    const priceNumber = Number(price);
+
+    if (!price || isNaN(priceNumber) || priceNumber <= 0) {
+      alert("Please enter a valid number for the price!");
+    }
+
     const newPost = {
-      title: document.getElementById("name").value,
+      title: title,
       user: "Alex Ionescu",
       skill: "Plumber",
       imageSrc: selectedFile,
-      description: document.getElementById("description").value,
-      price: document.getElementById("price").value + " RON",
+      description: description,
+      price: price + " RON",
       profileimg: profilepicture,
       rating: 0,
       reviews: 0,
       location: "București, Berceni",
       availability: "Luni - Duminică, 7:00 - 19:00",
+      category: document.getElementById("category").value,
     };
 
+    console.log("post: ", newPost);
+    
+
     setPosts(prevPosts => [newPost, ...prevPosts]);
+    setSelectedFile(null)
     cancelAdd()
 };
 
@@ -254,7 +275,7 @@ export const Posts = ({ onPostClick }) => {
           <SearchInput
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            placeholder="Caută postări..."
+            placeholder="Search post..."
           />
           <div style={{cursor: "pointer", marginLeft: "2%"}} className="add-post" onClick={addPostToggle}>
             <img src="/add-post.svg" alt="" height="30px" width="30px"/>
