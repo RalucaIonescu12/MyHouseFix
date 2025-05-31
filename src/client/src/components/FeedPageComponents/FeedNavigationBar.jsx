@@ -12,7 +12,8 @@ import ElectricService from "./NavbarComponents/ElectricService";
 import CurrentIssues from "./NavbarComponents/CurrentIssues";
 import CustomerSupport from "./NavbarComponents/CustomerSupport";
 import PermissionsButton from "./NavbarComponents/PermissionsButton";
-
+import HomeRenovationServices from "./NavbarComponents/HomeRenovationServices";
+import HouseCleaningService from "./NavbarComponents/HouseCleaningService";
 import "../../FeedPage/FeedPageStyle.css";
 
 const UiZingAdminsNav = ({ property1 = "variant-3" }) => {
@@ -34,13 +35,15 @@ const UiZingAdminsNav = ({ property1 = "variant-3" }) => {
 
       <div className="nav-body">
         <div className="nav-section">
-          {isOpen && <span className="nav-label">GENERAL SETTINGS</span>}
+          {isOpen && <span className="nav-label">SERVICES</span>}
           <DashboardButton showLabel={isOpen} />
           <MapButton showLabel={isOpen} />
           <CarService showLabel={isOpen} />
           <TailoringService showLabel={isOpen} />
           <PlumbingService showLabel={isOpen} />
           <ElectricService showLabel={isOpen} />
+          <HouseCleaningService showLabel={isOpen} />
+          <HomeRenovationServices showLabel={isOpen} />
         </div>
 
         <div className="nav-section">
