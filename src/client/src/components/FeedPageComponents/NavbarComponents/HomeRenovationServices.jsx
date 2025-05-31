@@ -1,11 +1,12 @@
 import React from "react";
-import { MapPin } from "lucide-react";
+import { Hammer } from "lucide-react"; 
 import "../../../FeedPage/FeedPageStyle.css";
-const MapButton = ({ showLabel = true  }) => (
-  <button className="nav-button">
-    <MapPin className="icon" />
-     {showLabel && "Home Renovation Services"}
+
+const HomeRenovationService = ({ showLabel = true, onClick }) => (
+  <button className="nav-button" onClick={onClick}>
+    <Hammer className="icon" />
+    {showLabel && "Home Renovation Services"}
   </button>
 );
 
-export default MapButton;
+export default HomeRenovationService;

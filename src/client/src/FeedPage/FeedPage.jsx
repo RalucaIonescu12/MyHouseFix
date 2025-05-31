@@ -12,42 +12,38 @@ const currentUser = {
   name: "Alex Ionescu",
   location: "București, Sector 4",
   role: "mester",
-    role: "mester",
-    pendingRequests: 3,
-    upcomingAppointments: 2,
-    profileImg: profileImage
+  pendingRequests: 3,
+  upcomingAppointments: 2,
+  profileImg: profileImage
 };
-
-
 export const FeedPage = () => {
-    const [selectedPost, setSelectedPost] = useState(null);
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-    const handlePostClick = (title) => {
-        setSelectedPost(title);
-    };
+  const handlePostClick = (title) => setSelectedPost(title);
 
   return (
     <div className="feedpage-container">
       <div className="sidebar">
-        <UiZingAdminsNav />
+        <UiZingAdminsNav setCategory={setSelectedCategory} />
       </div>
 
       <div className="main-content">
         <div className="center-content">
-            <Posts onPostClick={handlePostClick} />
+            <Posts onPostClick={handlePostClick} category={selectedCategory} />
         </div>
       </div>
 
-        <div className="right-panel">
-            {selectedPost ? (
-                <ReviewBox
-                    reviews={reviewsData[selectedPost] || []}
-                    onBack={() => setSelectedPost(null)}
-                />
-            ) : (
-                <ProfileBox user={currentUser}/>
-            )}
-        </div>
+      <div className="right-panel">
+        {selectedPost ? (
+            <ReviewBox
+                reviews={reviewsData[selectedPost] || []}
+                onBack={() => setSelectedPost(null)}
+            />
+        ) : (
+            <ProfileBox user={currentUser}/>
+        )}
+      </div>
     </div>
   );
 };

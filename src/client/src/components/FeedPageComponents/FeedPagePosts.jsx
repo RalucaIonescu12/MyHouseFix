@@ -26,7 +26,7 @@ export function SearchInput({ value, onChange, placeholder = "Search..." }) {
 }
 
 
-export const Posts = ({ onPostClick }) => {
+export const Posts = ({ onPostClick, category }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [addPostForm, setAddPostForm] = useState(false);
@@ -199,16 +199,26 @@ export const Posts = ({ onPostClick }) => {
     },
   ]);
 
-  const filteredPosts = posts.filter(p =>
+  const filteredBySearch = posts.filter(p =>
     p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     p.user.toLowerCase().includes(searchQuery.toLowerCase()) ||
     p.skill.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  const filteredByCategory = category === "All"
+    ? filteredBySearch
+    : filteredBySearch.filter(p => p.skill.toLowerCase() === category.toLowerCase());
+
+  const totalPages = Math.ceil(filteredByCategory.length / postsPerPage);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = filteredByCategory.slice(indexOfFirstPost, indexOfLastPost);
+
+
+  // const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  // const indexOfLastPost = currentPage * postsPerPage;
+  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  // const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   const [selectedFile, setSelectedFile] = useState(null);
 
 
