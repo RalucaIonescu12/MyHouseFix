@@ -43,12 +43,12 @@ export const AddForm = ({cancelAdd, setSelectedFile, addPost}) => {
               <div className="add-form-elements">
                 <label htmlFor="category">Category</label>
                 <select id="category">
-                    <option value="tailoring">Tailoring</option>
-                    <option value="car">Car</option>
-                    <option value="plumbing">PLumbing</option>
-                    <option value="electric">Electric</option>
-                    <option value="home-cleaning">Home cleaning</option>
-                    <option value="house-renovation">House renovation</option>
+                    <option value="Tailor">Tailoring</option>
+                    <option value="Mechanic">Car</option>
+                    <option value="Plumber">Plumbing</option>
+                    <option value="Electrician">Electric</option>
+                    <option value="Cleaner">Home cleaning</option>
+                    <option value="Renovator">House renovation</option>
                 </select>
             </div>
 

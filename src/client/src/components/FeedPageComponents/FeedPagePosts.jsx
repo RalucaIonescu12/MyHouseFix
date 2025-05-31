@@ -244,7 +244,7 @@ export const Posts = ({ onPostClick, category }) => {
     const newPost = {
       title: title,
       user: "Alex Ionescu",
-      skill: "Plumber",
+      skill: document.getElementById("category").value,
       imageSrc: selectedFile,
       description: description,
       price: priceNumber,
@@ -253,7 +253,6 @@ export const Posts = ({ onPostClick, category }) => {
       reviews: 0,
       location: "București, Berceni",
       availability: "Luni - Duminică, 7:00 - 19:00",
-      category: document.getElementById("category").value,
     };
 
     console.log("post: ", newPost);
