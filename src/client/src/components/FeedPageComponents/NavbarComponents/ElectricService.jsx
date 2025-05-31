@@ -4,7 +4,7 @@ import "../../../FeedPage/FeedPageStyle.css";
 const ElectricService = ({ showLabel = true  }) => (
   <button className="nav-button">
     <Zap className="icon" />
-     {showLabel && "Electric service"}
+     {showLabel && "Electrician services"}
   </button>
 );
 

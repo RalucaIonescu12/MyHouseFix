@@ -4,7 +4,7 @@ import "../../../FeedPage/FeedPageStyle.css";
 const CurrentIssues = ({ showLabel = true  }) => (
   <button className="nav-button">
     <AlertCircle className="icon" />
-    {showLabel && "Current issues"}
+    {showLabel && "Profile"}
   </button>
 );
 

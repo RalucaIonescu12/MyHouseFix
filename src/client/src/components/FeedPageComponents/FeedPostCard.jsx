@@ -6,7 +6,7 @@ import profilepicture from "../../images/profile.jpeg";
 
 const FeedPostCard = ({
     profilepicture = profilepicture,
-   imageSrc,
+    imageSrc,
     title,
     updated,
     name,
@@ -18,6 +18,7 @@ const FeedPostCard = ({
     availability,
     price,
     onClick,
+    accredited = false
 }) => {
   return (
       <div className="feed-card" onClick={onClick}>
@@ -56,10 +57,18 @@ const FeedPostCard = ({
                <span className="feed-availability">{availability}</span>
                <span className="feed-price">{price}</span>
              </div>
-
              <button className="feed-contact-button">
-               <Phone size={16} /> Programeaza...
+               <Phone size={16} /> Schedule...
              </button>
+              {accredited && (
+                           <span className="verified-badge">
+                             <svg width="16" height="16" fill="green" style={{marginRight: 3}}>
+                               <circle cx="8" cy="8" r="8" fill="#36d399"/>
+                               <path d="M6.5 8.5l1.5 1.5 3-3" stroke="white" strokeWidth="2" fill="none"/>
+                             </svg>
+                             Verified
+                           </span>
+              )}
            </div>
          </div>
   );

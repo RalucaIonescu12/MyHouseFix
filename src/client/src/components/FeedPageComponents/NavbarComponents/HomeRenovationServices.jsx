@@ -4,7 +4,7 @@ import "../../../FeedPage/FeedPageStyle.css";
 const MapButton = ({ showLabel = true  }) => (
   <button className="nav-button">
     <MapPin className="icon" />
-     {showLabel && "Tailoring Services"}
+     {showLabel && "Home Renovation Services"}
   </button>
 );
 
