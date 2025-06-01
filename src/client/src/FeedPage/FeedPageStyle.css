@@ -305,9 +305,28 @@
   padding: 8px 12px;
 }
 
+.feed-review-button{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #fbbf24;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+
+  position: absolute;
+  right: 20px
+}
+
 .feed-contact-button:hover {
   background-color: #2563eb;
 }
+
+.feed-review-button:hover {
+  background-color: #f59e0b;
+}
+
 
 
 .feedpicture,

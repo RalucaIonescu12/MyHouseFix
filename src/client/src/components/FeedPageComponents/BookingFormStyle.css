@@ -2,13 +2,12 @@
 .booking-form {
     display: flex;
     flex-direction: column;
-    max-height: 100vh; /* Ocupă ecranul complet */
+    width: 100%;
+    height: 100%;
     overflow-y: auto;
     gap: 2px;
     background: #ffffff;
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 30px;
     flex: 1;
 }
 
@@ -16,45 +15,42 @@
 .booking-form h3 {
     margin-bottom: 2px;
     color: #2c3e50;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 7px;
 }
 
 .booking-form label {
     font-weight: 600;
     margin-top: 8px;
     color: #2c3e50;
-}
-
-
-.booking-form label {
+    margin-left: 20px;
     font-size: 13px;
 }
 
-.booking-form textarea{
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-    max-width: 100%;
-    margin-right: 2px;
-    min-height: 20px;
-    resize: vertical;
-}
 
+
+.booking-form textarea,
 .booking-form input,
 .booking-form select {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 14px;
-    width: 95%;
+    max-width: 100%;
     min-height: 20px;
     resize: vertical;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .booking-form .actions {
     margin-top: 12px;
     display: flex;
     gap: 8px;
+    margin-left: 20px;
+    margin-bottom: 30px;
 }
 
 .booking-form button {
