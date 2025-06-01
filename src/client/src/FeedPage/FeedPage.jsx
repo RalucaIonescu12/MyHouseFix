@@ -68,7 +68,3 @@ export const FeedPage = () => {
 };
 
 export default FeedPage;
-
-// issues: totul trebuie facut mai mare
-// sa nu se schimbe dimensiunea lui right panel
-// daca apas pe o zi indisponibila sa nu se schimbe culoarea in gri dar sa dispara meniul dropdown si sa scrie undeva indisponibil

@@ -181,6 +181,8 @@
   flex-direction: column;
   gap: 10px;
   flex-shrink: 0;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .posts {
