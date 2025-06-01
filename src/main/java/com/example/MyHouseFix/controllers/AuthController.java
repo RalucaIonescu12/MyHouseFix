@@ -23,10 +23,10 @@ public class AuthController {
         this.userService = userService;
     }
 
+
     @PostMapping("/login")
     public ResponseEntity<?> login(
-            @RequestHeader("Authorization") String authorizationHeader,
-            @RequestBody(required = false) Map<String, String> body
+            @RequestHeader("Authorization") String authorizationHeader
     ) {
         try {
             String idToken = authorizationHeader.replace("Bearer ", "");
@@ -34,12 +34,9 @@ public class AuthController {
 
             String email = decodedToken.getEmail();
             String uid = decodedToken.getUid();
-            String fullName = body != null ? body.get("fullName") : null;
 
-            // Verificăm dacă userul există deja în Firestore
             User existingUser = userService.getUserById(uid);
 
-            // 2. Dacă nu există după UID, verificăm după email
             if (existingUser == null) {
                 User userByEmail = userService.getUserByEmail(email);
                 if (userByEmail != null) {
@@ -47,15 +44,52 @@ public class AuthController {
                             .body("Un cont cu acest email există deja.");
                 }
 
-                // 3. Dacă nu există nici după email, îl creăm
-                User newUser = new User(uid, email, fullName, null);
-                userService.saveUser(newUser);
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Utilizatorul nu există. Te rog înregistrează-te.");
             }
 
-            return ResponseEntity.ok("User autenticat cu succes: " + email);
+            return ResponseEntity.ok("User autentificat cu succes: " + email);
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token invalid: " + e.getMessage());
         }
     }
+
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(
+            @RequestHeader("Authorization") String authorizationHeader,
+            @RequestBody Map<String, String> body
+    ) {
+        try {
+            String idToken = authorizationHeader.replace("Bearer ", "");
+            FirebaseToken decodedToken = firebaseAuthService.verifyToken(idToken);
+
+            String email = decodedToken.getEmail();
+            String uid = decodedToken.getUid();
+            String fullName = body.get("fullName");
+            String role = body.get("role");
+
+            System.out.println("Received data in /auth/register:");
+            System.out.println("fullName: " + fullName);
+            System.out.println("role: " + role);
+
+            if (role == null || (!role.equals("CLIENT") && !role.equals("HANDYMAN"))) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rol invalid");
+            }
+
+            User existingUser = userService.getUserById(uid);
+            if (existingUser != null) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Utilizatorul există deja.");
+            }
+
+            User newUser = new User(uid, email, fullName, null, role);
+            userService.saveUser(newUser);
+
+            return ResponseEntity.ok("Cont creat cu succes!");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token invalid: " + e.getMessage());
+        }
+    }
+
 }

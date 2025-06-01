@@ -15,21 +15,25 @@ public class User implements UserDetails {
     private String fullName;
 
     private String password;
+    private String role;
+
 
     public User() {
     }
 
-    public User(String email, String fullName, String password) {
+    public User(String email, String fullName, String password, String role) {
         this.email = email;
         this.fullName = fullName;
         this.password = password;
+        this.role = role;
     }
 
-    public User(String userId, String email, String fullName, String password) {
+    public User(String userId, String email, String fullName, String password, String role) {
         this.userId = userId;
         this.email = email;
         this.fullName = fullName;
         this.password = password;
+        this.role = role;
     }
 
     public String getUserId() {
@@ -74,13 +78,22 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "userId='" + userId + '\'' +
                 ", email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

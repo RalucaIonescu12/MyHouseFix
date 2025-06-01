@@ -13,7 +13,15 @@ const RegisterWidget = () => {
     const [error, setErrorMessage] = useState("");
     const navigate = useNavigate();
     const [role, setRole] = useState("");
-    
+
+
+    const handleSelectRole = async (selectedRole) => {
+        setRole(selectedRole);
+
+        await new Promise((resolve) => setTimeout(resolve, 10));
+
+        document.getElementById("registerForm").requestSubmit();
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,8 +38,8 @@ const RegisterWidget = () => {
             const idToken = await user.getIdToken();
 
             await axios.post(
-                "/auth/login",
-                { fullName: name },
+                "/auth/register",
+                { fullName: name, role: role  },
                 {
                     headers: {
                         Authorization: `Bearer ${idToken}`,
@@ -112,26 +120,36 @@ const RegisterWidget = () => {
                     </div>
 
                     <div style={styles.roleButtons}>
-                        <button style={{    width: "50%",
-                        height: "30px",
-                        borderRadius: "5px",
-                        marginLeft:"8px",
-                        fontWeight: "600",
-                        cursor: "pointer",
-                        border: "none",
-                        backgroundColor: role === "master" ? "#2c3e50" : "",
-                        color: role === "master" ? "white" : "rgb(47, 65, 86)",
-                        }} onClick={() => setRole("master")}>Master</button>
-                        <button style={{width: "50%",
-                        height: "30px",
-                        borderRadius: "5px",
-                        marginLeft:"8px",
-                        fontWeight: "600",
-                        cursor: "pointer",
-                        border: "none",
-                        backgroundColor: role === "client" ? "#2c3e50" : "",
-                        color: role === "client" ? "white" : "rgb(47, 65, 86)",
-                        }} onClick={() => setRole("client")}>Client</button>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setRole("HANDYMAN");
+                            }}
+                            style={{    width: "50%",
+                            height: "30px",
+                            borderRadius: "5px",
+                            marginLeft:"8px",
+                            fontWeight: "600",
+                            cursor: "pointer",
+                            border: "none",
+                            backgroundColor: role === "HANDYMAN" ? "#2c3e50" : "",
+                            color: role === "HANDYMAN" ? "white" : "rgb(47, 65, 86)",
+                        }}>HANDYMAN</button>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setRole("CLIENT");
+                            }}
+                            style={{width: "50%",
+                            height: "30px",
+                            borderRadius: "5px",
+                            marginLeft:"8px",
+                            fontWeight: "600",
+                            cursor: "pointer",
+                            border: "none",
+                            backgroundColor: role === "CLIENT" ? "#2c3e50" : "",
+                            color: role === "CLIENT" ? "white" : "rgb(47, 65, 86)",
+                        }}>CLIENT</button>
                     </div>
 
                     {error && (
@@ -310,10 +328,10 @@ const styles = {
         textAlign: "center",
     },
     roleButtons: {
-    display: "flex",
-    justifyContent: "center",
-    paddingLeft: "10px"
-  }
+        display: "flex",
+        justifyContent: "center",
+        paddingLeft: "10px"
+    }
 };
 
 export default RegisterWidget;
