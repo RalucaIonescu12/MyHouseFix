@@ -87,7 +87,7 @@ export const Posts = ({ onPostClick, onBookClick, category, onAddReviewClick }) 
     },
     {
       profileimg: profilepicture,
-      title: "Plumbing",
+      title: "Plumbing 1",
       updated: "3 days ago",
       user: "Alex Ionescu",
       skill: "Plumber",
@@ -299,8 +299,12 @@ const handleSortChange = (event) => {
     }
   }
 
-
 };
+
+const handleDelete = (index) => {
+  console.log("key: ", index);
+  setPosts([...posts].filter((_, i) => i !== index))
+}
 
   return (
     <div className="posts">
@@ -360,6 +364,7 @@ const handleSortChange = (event) => {
              accredited={p.accredited}
              onBookClick={() => onBookClick(p)}
              onAddReviewClick={() => onAddReviewClick(p.title)}
+             handleDelete={() => handleDelete(i)}
            />
          ))}
        </div>

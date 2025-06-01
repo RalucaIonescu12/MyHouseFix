@@ -1,5 +1,5 @@
 import React from "react";
-import { Star, MapPin, BadgeCheck, Phone } from "lucide-react";
+import { Star, MapPin, BadgeCheck, Phone, Trash2 } from "lucide-react";
 import "../../FeedPage/FeedPageStyle.css";
 import electricityfix from "../../images/electricityfix.jpeg";
 import profilepicture from "../../images/profile.jpeg";
@@ -20,8 +20,10 @@ const FeedPostCard = ({
     onClick,
     onBookClick,
     accredited = false,
-    onAddReviewClick
+    onAddReviewClick,
+    handleDelete
 }) => {
+
   return (
       <div className="feed-card" onClick={onClick}>
            <div className="feed-card-header">
@@ -34,6 +36,17 @@ const FeedPostCard = ({
                <strong className="feed-username">{name}</strong>
                <span className="feed-timestamp">{updated}</span>
              </div>
+
+             {
+              name === "Alex Ionescu" && (
+                <div style={{marginLeft: "35rem"}}>
+                  <Trash2 className="action-button" onClick={handleDelete}/>
+                </div>
+              )
+             }
+
+
+
            </div>
 
            <div className="feed-image-container">

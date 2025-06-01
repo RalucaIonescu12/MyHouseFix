@@ -860,3 +860,13 @@
   height: 2.2rem;
   padding-left: 1rem;
 }
+
+.action-button{
+  color: #2c3e50;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.action-button:hover{
+  color:#5b6d81;
+}
