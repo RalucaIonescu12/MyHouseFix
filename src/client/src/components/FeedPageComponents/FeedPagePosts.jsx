@@ -25,12 +25,13 @@ export function SearchInput({ value, onChange, placeholder = "Search..." }) {
   );
 }
 
-export const Posts = ({ onPostClick }) => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 2;
+export const Posts = ({ onPostClick , onBookClick }) => {
+    const [searchQuery, setSearchQuery] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [addPostForm, setAddPostForm] = useState(false);
+    const postsPerPage = 2;
 
-  const addPostToggle = () => {
+    const addPostToggle = () => {
     setAddPostForm(true)
   }
 

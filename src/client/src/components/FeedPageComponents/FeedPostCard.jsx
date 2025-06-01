@@ -66,11 +66,8 @@ const FeedPostCard = ({
                        onBookClick && onBookClick();
                    }}
                >
-                   <Phone size={16}/> Programeaza...
+                   <Phone size={16}/> Schedule...
                </button>
-             <button className="feed-contact-button">
-               <Phone size={16} /> Schedule...
-             </button>
               {accredited && (
                            <span className="verified-badge">
                              <svg width="16" height="16" fill="green" style={{marginRight: 3}}>
