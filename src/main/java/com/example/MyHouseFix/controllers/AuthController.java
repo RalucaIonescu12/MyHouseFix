@@ -73,7 +73,7 @@ public class AuthController {
             System.out.println("fullName: " + fullName);
             System.out.println("role: " + role);
 
-            if (role == null || (!role.equals("CLIENT") && !role.equals("HANDYMAN"))) {
+            if (role == null || (!role.equals("client") && !role.equals("master"))) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Rol invalid");
             }
 

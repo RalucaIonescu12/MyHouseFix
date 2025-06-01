@@ -18,7 +18,7 @@ const RegisterWidget = () => {
     const handleSelectRole = async (selectedRole) => {
         setRole(selectedRole);
 
-        await new Promise((resolve) => setTimeout(resolve, 10));
+        await new Promise((resolve) => setTimeout(resolve, 5));
 
         document.getElementById("registerForm").requestSubmit();
     };
@@ -123,7 +123,7 @@ const RegisterWidget = () => {
                         <button
                             type="button"
                             onClick={() => {
-                                setRole("HANDYMAN");
+                                setRole("master");
                             }}
                             style={{    width: "50%",
                             height: "30px",
@@ -132,13 +132,13 @@ const RegisterWidget = () => {
                             fontWeight: "600",
                             cursor: "pointer",
                             border: "none",
-                            backgroundColor: role === "HANDYMAN" ? "#2c3e50" : "",
-                            color: role === "HANDYMAN" ? "white" : "rgb(47, 65, 86)",
+                            backgroundColor: role === "master" ? "#2c3e50" : "",
+                            color: role === "master" ? "white" : "rgb(47, 65, 86)",
                         }}>HANDYMAN</button>
                         <button
                             type="button"
                             onClick={() => {
-                                setRole("CLIENT");
+                                setRole("client");
                             }}
                             style={{width: "50%",
                             height: "30px",
@@ -147,8 +147,8 @@ const RegisterWidget = () => {
                             fontWeight: "600",
                             cursor: "pointer",
                             border: "none",
-                            backgroundColor: role === "CLIENT" ? "#2c3e50" : "",
-                            color: role === "CLIENT" ? "white" : "rgb(47, 65, 86)",
+                            backgroundColor: role === "client" ? "#2c3e50" : "",
+                            color: role === "client" ? "white" : "rgb(47, 65, 86)",
                         }}>CLIENT</button>
                     </div>
 

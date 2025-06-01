@@ -63,7 +63,7 @@ const FeedPostCard = ({
                    className="feed-contact-button"
                    onClick={(e) => {
                        e.stopPropagation();
-                       onBookClick && onBookClick();
+                       onBookClick && onBookClick({ availability });
                    }}
                >
                    <Phone size={16}/> Schedule...
