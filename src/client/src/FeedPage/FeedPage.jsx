@@ -13,17 +13,17 @@ import BookingForm from "../components/FeedPageComponents/BookingForm";
 const currentUser = {
   name: "Alex Ionescu",
   location: "București, Sector 4",
-  role: "mester",
-    role: "mester",
-    pendingRequests: 3,
-    upcomingAppointments: 2,
-    profileImg: profileImage
+  role: localStorage.getItem("role"),
+  pendingRequests: 3,
+  upcomingAppointments: 2,
+  profileImg: profileImage
 };
 
 
 export const FeedPage = () => {
     const [showProfile, setShowProfile] = useState(true);
     const [selectedPost, setSelectedPost] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
     const handlePostClick = (title) => {
         setShowProfile(false);
@@ -39,12 +39,12 @@ export const FeedPage = () => {
   return (
     <div className="feedpage-container">
       <div className="sidebar">
-        <UiZingAdminsNav />
+        <UiZingAdminsNav setCategory={setSelectedCategory} />
       </div>
 
       <div className="main-content">
         <div className="center-content">
-            <Posts onPostClick={handlePostClick} onBookClick={handleBookClick} />
+            <Posts onPostClick={handlePostClick} onBookClick={handleBookClick} category={selectedCategory} />
         </div>
       </div>
 

@@ -41,6 +41,18 @@ export const AddForm = ({cancelAdd, setSelectedFile, addPost}) => {
               </div>
 
               <div className="add-form-elements">
+                <label htmlFor="category">Category</label>
+                <select id="category">
+                    <option value="Tailor">Tailoring</option>
+                    <option value="Mechanic">Car</option>
+                    <option value="Plumber">Plumbing</option>
+                    <option value="Electrician">Electric</option>
+                    <option value="Cleaner">Home cleaning</option>
+                    <option value="Renovator">House renovation</option>
+                </select>
+            </div>
+
+              <div className="add-form-elements">
                 <label htmlFor="photo">Photo</label>
                 <input 
                   type="file" 

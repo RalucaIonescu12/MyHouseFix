@@ -12,6 +12,8 @@ const RegisterWidget = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setErrorMessage] = useState("");
     const navigate = useNavigate();
+    const [role, setRole] = useState("");
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -107,6 +109,29 @@ const RegisterWidget = () => {
                             style={styles.input}
                         />
                         <img alt="Eye off" src={icon} style={styles.eyeIcon}/>
+                    </div>
+
+                    <div style={styles.roleButtons}>
+                        <button style={{    width: "50%",
+                        height: "30px",
+                        borderRadius: "5px",
+                        marginLeft:"8px",
+                        fontWeight: "600",
+                        cursor: "pointer",
+                        border: "none",
+                        backgroundColor: role === "master" ? "#2c3e50" : "",
+                        color: role === "master" ? "white" : "rgb(47, 65, 86)",
+                        }} onClick={() => setRole("master")}>Master</button>
+                        <button style={{width: "50%",
+                        height: "30px",
+                        borderRadius: "5px",
+                        marginLeft:"8px",
+                        fontWeight: "600",
+                        cursor: "pointer",
+                        border: "none",
+                        backgroundColor: role === "client" ? "#2c3e50" : "",
+                        color: role === "client" ? "white" : "rgb(47, 65, 86)",
+                        }} onClick={() => setRole("client")}>Client</button>
                     </div>
 
                     {error && (
@@ -284,6 +309,11 @@ const styles = {
         fontWeight: "500",
         textAlign: "center",
     },
+    roleButtons: {
+    display: "flex",
+    justifyContent: "center",
+    paddingLeft: "10px"
+  }
 };
 
 export default RegisterWidget;
