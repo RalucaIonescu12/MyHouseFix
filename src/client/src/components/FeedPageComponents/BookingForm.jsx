@@ -171,9 +171,9 @@ const BookingForm = ({ onBack, post }) => {
             <label>Description</label>
             <textarea placeholder="Describe the issue..."/>
 
-            <label>Calendar</label>
-            <div className="calendar-container">
-                <div className="calendar-wrapper">
+            <label style={{marginTop: "8px", marginBottom: "0px"}}>Calendar</label>
+    <div className="calendar-container">
+        <div className="calendar-wrapper">
                     <Calendar
                         onClickDay={handleDateChange}
                         tileClassName={tileClassName}

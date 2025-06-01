@@ -26,7 +26,7 @@ export function SearchInput({ value, onChange, placeholder = "Search..." }) {
 }
 
 
-export const Posts = ({ onPostClick, onBookClick, category }) => {
+export const Posts = ({ onPostClick, onBookClick, category, onAddReviewClick }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [addPostForm, setAddPostForm] = useState(false);
@@ -359,6 +359,7 @@ const handleSortChange = (event) => {
              profilepicture={p.profileimg}
              accredited={p.accredited}
              onBookClick={() => onBookClick(p)}
+             onAddReviewClick={() => onAddReviewClick(p.title)}
            />
          ))}
        </div>

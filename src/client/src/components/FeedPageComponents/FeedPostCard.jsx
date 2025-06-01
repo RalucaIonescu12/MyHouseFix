@@ -19,7 +19,8 @@ const FeedPostCard = ({
     price,
     onClick,
     onBookClick,
-    accredited = false
+    accredited = false,
+    onAddReviewClick
 }) => {
   return (
       <div className="feed-card" onClick={onClick}>
@@ -40,36 +41,36 @@ const FeedPostCard = ({
            </div>
 
            {/* Content */}
-           <div className="feed-content">
-             <h3 className="feed-title">{title}</h3>
-             <p className="feed-description">{description}</p>
+          <div className="feed-content">
+              <h3 className="feed-title">{title}</h3>
+              <p className="feed-description">{description}</p>
 
-             <div className="feed-meta">
-               <div className="feed-rating">
-                 <Star size={16} color="#FFD700" fill="#FFD700" /> {rating} • {reviews} recenzii
-               </div>
-               <div className="feed-location">
-                 <MapPin size={16} /> {location}
-               </div>
-             </div>
+              <div className="feed-meta">
+                  <div className="feed-rating">
+                      <Star size={16} color="#FFD700" fill="#FFD700"/> {rating} • {reviews} recenzii
+                  </div>
+                  <div className="feed-location">
+                      <MapPin size={16}/> {location}
+                  </div>
+              </div>
 
-             <div className="feed-details">
-               <span className="feed-skill">{skill}</span>
-               <span className="feed-availability">{availability}</span>
-               <span className="feed-price">{price} RON</span>
-             </div>
+              <div className="feed-details">
+                  <span className="feed-skill">{skill}</span>
+                  <span className="feed-availability">{availability}</span>
+                  <span className="feed-price">{price} RON</span>
+              </div>
 
-               <button
-                   className="feed-contact-button"
-                   onClick={(e) => {
-                       e.stopPropagation();
-                       onBookClick && onBookClick({ availability });
-                   }}
-               >
-                   <Phone size={16}/> Schedule...
-               </button>
+              <button
+                  className="feed-contact-button"
+                  onClick={(e) => {
+                      e.stopPropagation();
+                      onBookClick && onBookClick({availability});
+                  }}
+              >
+                  <Phone size={16}/> Schedule...
+              </button>
               {accredited && (
-                           <span className="verified-badge">
+                  <span className="verified-badge">
                              <svg width="16" height="16" fill="green" style={{marginRight: 3}}>
                                <circle cx="8" cy="8" r="8" fill="#36d399"/>
                                <path d="M6.5 8.5l1.5 1.5 3-3" stroke="white" strokeWidth="2" fill="none"/>
@@ -77,7 +78,15 @@ const FeedPostCard = ({
                              Verified
                            </span>
               )}
-           </div>
+              <button className="feed-review-button"
+                      onClick={(e) => {
+                          e.stopPropagation();
+                          onAddReviewClick && onAddReviewClick(title);
+                      }}
+              >
+                  Add Review
+              </button>
+          </div>
       </div>
   );
 };
