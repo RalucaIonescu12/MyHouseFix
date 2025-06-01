@@ -26,7 +26,7 @@ export function SearchInput({ value, onChange, placeholder = "Search..." }) {
 }
 
 
-export const Posts = ({ onPostClick, category }) => {
+export const Posts = ({ onPostClick, onBookClick, category }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [addPostForm, setAddPostForm] = useState(false);
@@ -234,7 +234,7 @@ export const Posts = ({ onPostClick, category }) => {
       alert("All fields must be filled!");
       return;
     }
-    
+
     const priceNumber = Number(price);
 
     if (!price || isNaN(priceNumber) || priceNumber <= 0) {
@@ -256,7 +256,7 @@ export const Posts = ({ onPostClick, category }) => {
     };
 
     console.log("post: ", newPost);
-    
+
     setPosts(prevPosts => [newPost, ...prevPosts]);
     setSelectedFile(null)
     cancelAdd()
@@ -358,6 +358,7 @@ const handleSortChange = (event) => {
              price={p.price}
              profilepicture={p.profileimg}
              accredited={p.accredited}
+             onBookClick={() => onBookClick(p)}
            />
          ))}
        </div>

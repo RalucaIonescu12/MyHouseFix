@@ -48,78 +48,78 @@ const LoginWidget = () => {
   };
 
   return (
-    <div style={styles.widgetContainer}>
-      <div style={styles.formContainer}>
-        <div style={styles.footer}>
-          <img alt="Logo" src={icon} style={styles.logo} />
-          <div style={styles.brandName}>MyHouseFix</div>
-          <p style={styles.description}>A new way to save your house using virtual space.</p>
-        </div>
-        <div style={styles.loginHeader}>Login</div>
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              style={styles.input}
-            />
+      <div style={styles.widgetContainer}>
+        <div style={styles.formContainer}>
+          <div style={styles.footer}>
+            <img alt="Logo" src={icon} style={styles.logo} />
+            <div style={styles.brandName}>MyHouseFix</div>
+            <p style={styles.description}>A new way to save your house using virtual space.</p>
           </div>
-
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              style={styles.input}
-            />
-            <img alt="Eye off" src={icon} style={styles.eyeIcon} />
-          </div>
-
-          <div style={styles.extra}>
-            <div style={styles.remember}>
+          <div style={styles.loginHeader}>Login</div>
+          <form onSubmit={handleSubmit} style={styles.form}>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Email</label>
               <input
-                type="checkbox"
-                checked={rememberMe}
-                onChange={() => setRememberMe(!rememberMe)}
-                style={styles.checkbox}
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  style={styles.input}
               />
-              <span>Remember me</span>
             </div>
-            <span style={styles.forgotPassword}>Forgot password?</span>
-          </div>
-          {error && <div style={{ color: "red", marginTop: "10px" }}>{error}</div>}
-          <div style={styles.buttonContainer}>
-            <button type="submit" style={styles.button}>
-              Login
-            </button>
-            <button
-                type="button"
-                style={styles.buttonSignUp}
-                onClick={() => navigate("/register")}
-            >
-              Sign Up
-            </button>
-          </div>
-        </form>
+
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Password</label>
+              <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                  style={styles.input}
+              />
+              <img alt="Eye off" src={icon} style={styles.eyeIcon} />
+            </div>
+
+            <div style={styles.extra}>
+              <div style={styles.remember}>
+                <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={() => setRememberMe(!rememberMe)}
+                    style={styles.checkbox}
+                />
+                <span>Remember me</span>
+              </div>
+              <span style={styles.forgotPassword}>Forgot password?</span>
+            </div>
+            {error && <div style={{ color: "red", marginTop: "10px" }}>{error}</div>}
+            <div style={styles.buttonContainer}>
+              <button type="submit" style={styles.button}>
+                Login
+              </button>
+              <button
+                  type="button"
+                  style={styles.buttonSignUp}
+                  onClick={() => navigate("/register")}
+              >
+                Sign Up
+              </button>
+            </div>
+          </form>
 
 
-        <div style={styles.socialLoginContainer}>
-          <div style={styles.socialLogin}>Or, login with</div>
-          <div style={styles.socialButtons}>
-            <button style={styles.socialButton}>Facebook</button>
-            <button style={styles.socialButton}>LinkedIn</button>
-            <button style={styles.socialButton}>Google</button>
+          <div style={styles.socialLoginContainer}>
+            <div style={styles.socialLogin}>Or, login with</div>
+            <div style={styles.socialButtons}>
+              <button style={styles.socialButton}>Facebook</button>
+              <button style={styles.socialButton}>LinkedIn</button>
+              <button style={styles.socialButton}>Google</button>
+            </div>
           </div>
+
+
         </div>
-
-        
       </div>
-    </div>
   );
 };
 

@@ -18,6 +18,7 @@ const FeedPostCard = ({
     availability,
     price,
     onClick,
+    onBookClick,
     accredited = false
 }) => {
   return (
@@ -57,9 +58,16 @@ const FeedPostCard = ({
                <span className="feed-availability">{availability}</span>
                <span className="feed-price">{price} RON</span>
              </div>
-             <button className="feed-contact-button">
-               <Phone size={16} /> Schedule...
-             </button>
+
+               <button
+                   className="feed-contact-button"
+                   onClick={(e) => {
+                       e.stopPropagation();
+                       onBookClick && onBookClick();
+                   }}
+               >
+                   <Phone size={16}/> Schedule...
+               </button>
               {accredited && (
                            <span className="verified-badge">
                              <svg width="16" height="16" fill="green" style={{marginRight: 3}}>
@@ -70,7 +78,7 @@ const FeedPostCard = ({
                            </span>
               )}
            </div>
-         </div>
+      </div>
   );
 };
 

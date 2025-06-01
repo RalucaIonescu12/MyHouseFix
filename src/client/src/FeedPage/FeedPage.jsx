@@ -7,6 +7,8 @@ import ReviewBox from '../components/FeedPageComponents/ReviewBox';
 import './FeedPageStyle.css';
 import profileImage from "../images/profile.jpeg";
 import reviewsData from "../components/FeedPageComponents/FeedReviewsData";
+import BookingForm from "../components/FeedPageComponents/BookingForm";
+
 
 const currentUser = {
   name: "Alex Ionescu",
@@ -16,11 +18,23 @@ const currentUser = {
   upcomingAppointments: 2,
   profileImg: profileImage
 };
+
+
 export const FeedPage = () => {
-  const [selectedPost, setSelectedPost] = useState(null);
+    const [showProfile, setShowProfile] = useState(true);
+    const [selectedPost, setSelectedPost] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const handlePostClick = (title) => setSelectedPost(title);
+    const handlePostClick = (title) => {
+        setShowProfile(false);
+        setSelectedPost(title);
+    };
+
+    const handleBookClick = (post) => {
+        setShowProfile(false);
+        console.log("Clicked booking for:", post.title);
+        setSelectedPost({ booking: post });
+    };
 
   return (
     <div className="feedpage-container">
@@ -30,22 +44,31 @@ export const FeedPage = () => {
 
       <div className="main-content">
         <div className="center-content">
-            <Posts onPostClick={handlePostClick} category={selectedCategory} />
+            <Posts onPostClick={handlePostClick} onBookClick={handleBookClick} category={selectedCategory} />
         </div>
       </div>
 
-      <div className="right-panel">
-        {selectedPost ? (
-            <ReviewBox
-                reviews={reviewsData[selectedPost] || []}
-                onBack={() => setSelectedPost(null)}
-            />
-        ) : (
-            <ProfileBox user={currentUser}/>
-        )}
-      </div>
+        <div className="right-panel">
+            {showProfile ? (
+                <ProfileBox user={currentUser} />
+            ) : selectedPost?.booking ? (
+                <BookingForm
+                    post={selectedPost.booking}
+                    onBack={() => setShowProfile(true)}
+                />
+            ) : (
+                <ReviewBox
+                    reviews={reviewsData[selectedPost] || []}
+                    onBack={() => setShowProfile(true)}
+                />
+            )}
+        </div>
     </div>
   );
 };
 
 export default FeedPage;
+
+// issues: totul trebuie facut mai mare
+// sa nu se schimbe dimensiunea lui right panel
+// daca apas pe o zi indisponibila sa nu se schimbe culoarea in gri dar sa dispara meniul dropdown si sa scrie undeva indisponibil

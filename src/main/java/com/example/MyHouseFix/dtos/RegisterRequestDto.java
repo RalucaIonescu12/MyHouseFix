@@ -7,13 +7,16 @@ public class RegisterRequestDto {
 
     private String password;
 
+    private String role;
+
     public RegisterRequestDto() {
     }
 
-    public RegisterRequestDto(String name, String email, String password) {
+    public RegisterRequestDto(String name, String email, String password, String role) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     public String getName() {
@@ -40,12 +43,21 @@ public class RegisterRequestDto {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "RegisterRequestDto{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

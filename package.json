@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "react-calendar": "^5.1.0",
+    "react-clock": "^6.0.0",
+    "react-time-picker": "^7.0.0"
+  }
+}
