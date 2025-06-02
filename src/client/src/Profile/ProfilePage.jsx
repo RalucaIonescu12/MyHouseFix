@@ -1,4 +1,4 @@
-import React, { useState, useRef  } from "react"; 
+import React, { useState, useRef } from "react";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import { Link } from 'react-router-dom';
@@ -18,15 +18,37 @@ const ProfilePage = () => {
     email: "ion@example.com",
   });
 
+  const [errors, setErrors] = useState({});
+
+  const validateProfile = () => {
+    const newErrors = {};
+    if (!profile.firstName.trim()) newErrors.firstName = "First name is required.";
+    if (!profile.lastName.trim()) newErrors.lastName = "Last name is required.";
+    if (!profile.username.trim()) newErrors.username = "Username is required.";
+    if (!profile.email.trim()) {
+      newErrors.email = "Email is required.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(profile.email)) {
+      newErrors.email = "Invalid email format.";
+    }
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      alert(Object.values(newErrors).join("\n"));
+      return false;
+    }
+
+    return true;
+  };
+
   const handleDeleteAvailability = (date) => {
     setAvailability(prev => prev.filter(entry => entry.date !== date));
   };
+
   const formatDate = (date) => {
     return date.toLocaleDateString('en-CA');
   };
 
   const [profilePicUrl, setProfilePicUrl] = useState(profilepicture);
-
   const fileInputRef = useRef(null);
 
   const handleProfilePicChange = (event) => {
@@ -39,13 +61,14 @@ const ProfilePage = () => {
       reader.readAsDataURL(file);
     }
   };
+
   const handlePictureClick = () => {
     if (editMode && fileInputRef.current) {
       fileInputRef.current.click();
     }
   };
-  const [selectedDates, setSelectedDates] = useState([]);
 
+  const [selectedDates, setSelectedDates] = useState([]);
   const [timeRange, setTimeRange] = useState({ start: null, end: null });
 
   const [availability, setAvailability] = useState([
@@ -62,8 +85,6 @@ const ProfilePage = () => {
     { date: "2025-06-18", time: "08:00 - 10:00" },
     { date: "2025-06-20", time: "11:00 - 13:00" },
   ]);
-  
-  
 
   const handleInputChange = (field, value) => {
     setProfile({ ...profile, [field]: value });
@@ -79,12 +100,15 @@ const ProfilePage = () => {
   };
 
   const isSelected = (date) => {
-    const formatted =  formatDate(date);
+    const formatted = formatDate(date);
     return selectedDates.includes(formatted);
   };
 
   const handleAddAvailability = () => {
-    if (selectedDates.length === 0 || !timeRange.start || !timeRange.end) return;
+    if (selectedDates.length === 0 || !timeRange.start || !timeRange.end) {
+      alert("Please select at least one date and specify both start and end times.");
+      return;
+    }
 
     const newEntries = selectedDates.map(date => ({
       date,
@@ -94,18 +118,18 @@ const ProfilePage = () => {
     const merged = [
       ...availability.filter(entry => !selectedDates.includes(entry.date)),
       ...newEntries,
-    ].sort((a,b) => a.date.localeCompare(b.date));
+    ].sort((a, b) => a.date.localeCompare(b.date));
 
     setAvailability(merged);
     setSelectedDates([]);
-    setTimeRange({ start: null, end: null });  // reset to null
+    setTimeRange({ start: null, end: null });
   };
 
   const tileClassName = ({ date, view }) => {
     if (view === 'month' && isSelected(date)) {
       return "selected-date";
     }
-    if (view === 'month' && availability.find(a => a.date ===  formatDate(date))) {
+    if (view === 'month' && availability.find(a => a.date === formatDate(date))) {
       return "highlighted-date";
     }
     return null;
@@ -118,18 +142,14 @@ const ProfilePage = () => {
       </div>
 
       <div className="profile-main">
-      <div className="profile-card">
+        <div className="profile-card">
           <div className="profile-top-section">
-            <div 
-              className={`profile-picture-container ${editMode ? "editable" : ""}`} 
+            <div
+              className={`profile-picture-container ${editMode ? "editable" : ""}`}
               onClick={handlePictureClick}
               title={editMode ? "Click to change profile picture" : ""}
             >
-              <img
-                src={profilePicUrl}
-                alt="Profile"
-                className="profile-picture"
-              />
+              <img src={profilePicUrl} alt="Profile" className="profile-picture" />
               {editMode && (
                 <div className="overlay">
                   <span className="edit-text">Edit</span>
@@ -149,7 +169,13 @@ const ProfilePage = () => {
                 <h1>Master's Profile</h1>
                 <button
                   className="edit-button"
-                  onClick={() => setEditMode(!editMode)}
+                  onClick={() => {
+                    if (editMode) {
+                      if (validateProfile()) setEditMode(false);
+                    } else {
+                      setEditMode(true);
+                    }
+                  }}
                 >
                   {editMode ? "Save" : "Edit..."}
                 </button>
@@ -179,63 +205,62 @@ const ProfilePage = () => {
 
             {editMode && (
               <div className="calendar-container">
-              <Calendar
-                onClickDay={toggleDateSelection}
-                tileClassName={tileClassName}
-                minDate={new Date()}
-              />
-            
-              <div className="time-inputs">
-                <label>
-                  From:
-                  <TimePicker
-                    onChange={(val) => setTimeRange({ ...timeRange, start: val })}
-                    value={timeRange.start}
-                    disableClock={false}
-                    clearIcon={null}
-                    format="HH:mm"
-                  />
-                </label>
-                <label>
-                  To:
-                  <TimePicker
-                    onChange={(val) => setTimeRange({ ...timeRange, end: val })}
-                    value={timeRange.end}
-                    disableClock={false}
-                    clearIcon={null}
-                    format="HH:mm"
-                  />
-                </label>
-                <button className="add-button" onClick={handleAddAvailability}>
-                  Add Availability
-                </button>
+                <Calendar
+                  onClickDay={toggleDateSelection}
+                  tileClassName={tileClassName}
+                  minDate={new Date()}
+                />
+
+                <div className="time-inputs">
+                  <label>
+                    From:
+                    <TimePicker
+                      onChange={(val) => setTimeRange({ ...timeRange, start: val })}
+                      value={timeRange.start}
+                      disableClock={false}
+                      clearIcon={null}
+                      format="HH:mm"
+                    />
+                  </label>
+                  <label>
+                    To:
+                    <TimePicker
+                      onChange={(val) => setTimeRange({ ...timeRange, end: val })}
+                      value={timeRange.end}
+                      disableClock={false}
+                      clearIcon={null}
+                      format="HH:mm"
+                    />
+                  </label>
+                  <button className="add-button" onClick={handleAddAvailability}>
+                    Add Availability
+                  </button>
+                </div>
               </div>
-            </div>
-            
             )}
+
             {!editMode && (
               <div className="availability-list">
                 {availability.length === 0 ? (
                   <p className="no-availability">No days selected.</p>
                 ) : (
                   <ul>
-                  {availability
-                    .filter((entry) => new Date(entry.date) >= new Date(new Date().setHours(0, 0, 0, 0)))
-                    .map((entry) => (
-                      <li key={entry.date} className="availability-item">
-                        <span>{entry.date}</span>
-                        <span>{entry.time}</span>
-                        <button
-                          className="delete-button"
-                          onClick={() => handleDeleteAvailability(entry.date)}
-                          title="Delete availability"
-                        >
-                          🗑️
-                        </button>
-                      </li>
-                    ))}
-                </ul>
-
+                    {availability
+                      .filter((entry) => new Date(entry.date) >= new Date(new Date().setHours(0, 0, 0, 0)))
+                      .map((entry) => (
+                        <li key={entry.date} className="availability-item">
+                          <span>{entry.date}</span>
+                          <span>{entry.time}</span>
+                          <button
+                            className="delete-button"
+                            onClick={() => handleDeleteAvailability(entry.date)}
+                            title="Delete availability"
+                          >
+                            🗑️
+                          </button>
+                        </li>
+                      ))}
+                  </ul>
                 )}
               </div>
             )}

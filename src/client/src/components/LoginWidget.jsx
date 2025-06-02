@@ -37,8 +37,9 @@ const LoginWidget = () => {
       );
 
       // ✅ 4. Salvează tokenul în localStorage dacă e nevoie
+      const userData = response.data;
       localStorage.setItem("token", idToken);
-
+        localStorage.setItem("role", userData.role);
       // ➡️ 5. Navighează spre aplicație
       navigate("/feed");
     } catch (err) {

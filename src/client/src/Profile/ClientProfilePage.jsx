@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
 import profilepicture from "../images/profile.jpeg";
 import UiZingAdminsNav from "../components/FeedPageComponents/FeedNavigationBar";
-import "./ClientProfilePage.css"; 
+import "./ClientProfilePage.css";
 import { Link } from 'react-router-dom';
+
 const BookingProfilePage = () => {
   const [editMode, setEditMode] = useState(false);
   const [profile, setProfile] = useState({
@@ -11,6 +12,24 @@ const BookingProfilePage = () => {
     username: "ionBanu123",
     email: "ion@example.com",
   });
+
+  const validateProfile = () => {
+    const errors = [];
+    if (!profile.firstName.trim()) errors.push("First name is required.");
+    if (!profile.lastName.trim()) errors.push("Last name is required.");
+    if (!profile.username.trim()) errors.push("Username is required.");
+    if (!profile.email.trim()) {
+      errors.push("Email is required.");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(profile.email)) {
+      errors.push("Invalid email format.");
+    }
+
+    if (errors.length > 0) {
+      alert("Please fix the following errors:\n\n" + errors.join("\n"));
+      return false;
+    }
+    return true;
+  };
 
   const [bookings] = useState([
     {
@@ -107,7 +126,15 @@ const BookingProfilePage = () => {
                 <h1>Client Profile</h1>
                 <button
                   className="edit-button"
-                  onClick={() => setEditMode(!editMode)}
+                  onClick={() => {
+                    if (editMode) {
+                      if (validateProfile()) {
+                        setEditMode(false);
+                      }
+                    } else {
+                      setEditMode(true);
+                    }
+                  }}
                 >
                   {editMode ? "Save" : "Edit..."}
                 </button>
@@ -135,32 +162,31 @@ const BookingProfilePage = () => {
           <div className="booking-section">
             <h2>Past Bookings</h2>
             {bookings.length === 0 ? (
-                <p className="no-bookings">No bookings yet.</p>
+              <p className="no-bookings">No bookings yet.</p>
             ) : (
-                <div className="booking-scroll-wrapper">
+              <div className="booking-scroll-wrapper">
                 <ul className="booking-list">
-                    {bookings.map((booking, index) => (
+                  {bookings.map((booking, index) => (
                     <li key={index} className="booking-card">
-                        <div className="booking-info">
+                      <div className="booking-info">
                         <h3>{booking.title}</h3>
                         <p>
-                        <strong>Booked with:</strong>{" "}
-                        <Link to="/profile" className="booking-user-link">
+                          <strong>Booked with:</strong>{" "}
+                          <Link to="/profile" className="booking-user-link">
                             {booking.user}
-                        </Link>
+                          </Link>
                         </p>
                         <p><strong>Skill:</strong> {booking.skill}</p>
                         <p><strong>Location:</strong> {booking.location}</p>
                         <p><strong>Price:</strong> {booking.price}</p>
                         <p><strong>Date:</strong> {booking.bookingDate}</p>
-                        </div>
+                      </div>
                     </li>
-                    ))}
+                  ))}
                 </ul>
-                </div>
+              </div>
             )}
-            </div>
-
+          </div>
         </div>
       </div>
     </div>

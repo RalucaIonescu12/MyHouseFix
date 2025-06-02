@@ -46,8 +46,11 @@ public class AuthController {
 
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Utilizatorul nu există. Te rog înregistrează-te.");
             }
-
-            return ResponseEntity.ok("User autentificat cu succes: " + email);
+            return ResponseEntity.ok(Map.of(
+                    "email", existingUser.getEmail(),
+                    "fullName", existingUser.getFullName(),
+                    "role", existingUser.getRole()
+            ));
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token invalid: " + e.getMessage());

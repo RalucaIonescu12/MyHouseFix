@@ -16,6 +16,10 @@
   box-shadow: 0.28% 0 0.69% rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease;
 }
+.nav-button.selected {
+  background: #22d3ee;
+  color: #191A24;
+}
 
 .vectors {
   display: none;

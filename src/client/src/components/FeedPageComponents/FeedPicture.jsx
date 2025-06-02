@@ -18,7 +18,6 @@ export const FeedPicture = ({ user }) => {
   const {
     name,
     location,
-    role,
     profileImg = profileImage,
   } = user || {};
 
@@ -28,7 +27,7 @@ export const FeedPicture = ({ user }) => {
 
   const pendingRequests = appointments.filter(a => a.status === "Pending").length;
   const acceptedCount = appointments.filter(a => a.status === "Accepted").length;
-
+    const role = localStorage.getItem("role");
   const handleStatus = (idx, status) => {
     setAppointments(apps =>
       apps.map((a, i) =>
@@ -47,7 +46,7 @@ export const FeedPicture = ({ user }) => {
           <MapPin size={14} /> {location}
         </p>
         <p className="feed-user-role">
-          <User size={14} /> {role === "client" ? "Client" : "Handyman"}
+          <User size={14} /> {role === "client" ? "Client" : "Master"}
         </p>
       </div>
 

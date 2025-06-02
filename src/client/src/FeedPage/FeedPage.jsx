@@ -59,7 +59,7 @@ export const FeedPage = () => {
   return (
     <div className="feedpage-container">
       <div className="sidebar">
-        <UiZingAdminsNav setCategory={setSelectedCategory} />
+        <UiZingAdminsNav setCategory={setSelectedCategory} selectedCategory={selectedCategory}/>
       </div>
 
       <div className="main-content">

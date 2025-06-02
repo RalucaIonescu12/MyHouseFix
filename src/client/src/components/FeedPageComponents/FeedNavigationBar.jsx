@@ -1,10 +1,8 @@
 import React, { useReducer } from "react";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
-import {
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import DashboardButton from "./NavbarComponents/DashboardButton";
 import MapButton from "./NavbarComponents/Map";
 import CarService from "./NavbarComponents/CarService";
@@ -14,16 +12,28 @@ import ElectricService from "./NavbarComponents/ElectricService";
 import HouseCleaningService from "./NavbarComponents/HouseCleaningService";
 import HomeRenovationServices from "./NavbarComponents/HomeRenovationServices";
 import CurrentIssues from "./NavbarComponents/CurrentIssues";
+
 import "../../FeedPage/FeedPageStyle.css";
 import icon from "../../images/pngegg.png";
 
-const UiZingAdminsNav = ({ property1 = "variant-3", setCategory }) => {
+const UiZingAdminsNav = ({ property1 = "variant-3", setCategory,selectedCategory  }) => {
   const [state, dispatch] = useReducer(reducer, {
     property1,
   });
+
   const navigate = useNavigate();
+  const location = useLocation();
   const isOpen = state.property1 === "open";
   const role = localStorage.getItem("role")
+  const isOnProfilePage = location.pathname === "/profileClient" ||location.pathname === "/profile" ;
+
+  const handleCategoryClick = (category) => {
+    if (isOnProfilePage) {
+      navigate("/feed");
+    } else {
+      setCategory(category);
+    }
+  };
 
   return (
     <nav className={`UI-zing-admins-nav ${isOpen ? "open" : "collapsed"}`}>
@@ -38,20 +48,60 @@ const UiZingAdminsNav = ({ property1 = "variant-3", setCategory }) => {
       <div className="nav-body">
         <div className="nav-section">
           {isOpen && <span className="nav-label">SERVICES</span>}
-          <DashboardButton showLabel={isOpen} onClick={() => setCategory("All")} />
-          <CarService showLabel={isOpen} onClick={() => setCategory("Mechanic")} />
-          <TailoringService showLabel={isOpen} onClick={() => setCategory("Tailor")} />
-          <PlumbingService showLabel={isOpen} onClick={() => setCategory("Plumber")} />
-          <ElectricService showLabel={isOpen} onClick={() => setCategory("Electrician")} />
-          <HouseCleaningService showLabel={isOpen} onClick={() => setCategory("Cleaner")} />
-          <HomeRenovationServices showLabel={isOpen} onClick={() => setCategory("Renovator")} />
+
+           <DashboardButton
+              showLabel={isOpen}
+              onClick={() => {
+                handleCategoryClick("All");
+                if (isOnProfilePage) {
+                  navigate("/feed");
+                }
+              }}
+              selected={selectedCategory === "All"}
+            />
+          <CarService
+            showLabel={isOpen}
+            onClick={() => handleCategoryClick("Mechanic")}
+            disabled={isOnProfilePage}
+            selected={selectedCategory === "Mechanic"}
+          />
+          <TailoringService
+            showLabel={isOpen}
+            onClick={() => handleCategoryClick("Tailor")}
+            disabled={isOnProfilePage}
+            selected={selectedCategory === "Tailor"}
+          />
+          <PlumbingService
+            showLabel={isOpen}
+            onClick={() => handleCategoryClick("Plumber")}
+            disabled={isOnProfilePage}
+             selected={selectedCategory === "Plumber"}
+          />
+          <ElectricService
+            showLabel={isOpen}
+            onClick={() => handleCategoryClick("Electrician")}
+            disabled={isOnProfilePage}
+            selected={selectedCategory === "Electrician"}
+          />
+          <HouseCleaningService
+            showLabel={isOpen}
+            onClick={() => handleCategoryClick("Cleaner")}
+            disabled={isOnProfilePage}
+            selected={selectedCategory === "Cleaner"}
+          />
+          <HomeRenovationServices
+            showLabel={isOpen}
+            onClick={() => handleCategoryClick("Renovator")}
+            disabled={isOnProfilePage}
+            selected={selectedCategory === "Renovator"}
+          />
         </div>
 
         <div className="nav-section">
           {isOpen && <span className="nav-label">OPERATIONS</span>}
           <CurrentIssues
         showLabel={isOpen}
-        onClick={() => role === 'master' ? navigate("/profileClient"): navigate("/profile")} 
+        onClick={() => role === 'master' ? navigate("/profile"): navigate("/profileClient")}
       />
         </div>
       </div>
@@ -61,8 +111,6 @@ const UiZingAdminsNav = ({ property1 = "variant-3", setCategory }) => {
           {isOpen && <div className="text-wrapper-6">Sign out</div>}
         </div>
       </div>
-
-      
     </nav>
   );
 };
@@ -75,7 +123,7 @@ function reducer(state) {
 
 UiZingAdminsNav.propTypes = {
   property1: PropTypes.oneOf(["variant-3", "open"]),
-  onCategorySelect: PropTypes.func.isRequired,
+  setCategory: PropTypes.func.isRequired,
 };
 
 const styles = {
